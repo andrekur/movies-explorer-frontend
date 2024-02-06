@@ -1,0 +1,18 @@
+.register {
+  width: 396px;
+  margin: 0 auto;
+}
+
+.register__form-free-hight {
+  height: 150px;
+}
+
+@media screen and (max-width: 500px) {
+  .register {
+    width: 260px;
+  }
+
+  .register__form-free-hight {
+    height: 222px;
+  }
+}

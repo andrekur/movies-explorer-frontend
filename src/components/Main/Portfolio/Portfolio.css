@@ -1,0 +1,122 @@
+.portfolio {
+  display: flex;
+  flex-direction: column;
+  background: #FAFAFA;
+  box-sizing: border-box;
+  padding: 0 0 115px;
+}
+
+.portfolio__title {
+  margin: 0 auto 50px;
+  min-width: 1140px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #A0A0A0;
+}
+
+.portfolio__links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  min-width: 1140px;
+}
+
+.portfolio__link {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 9px;
+  border-bottom: 1px solid #E8E8E8;
+}
+
+.portfolio__link_border-unactive {
+  padding: 0;
+  border: 0;
+}
+
+.portfolio__link-text {
+  margin: 0;
+  padding-bottom: 10px;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: -0.04em;
+}
+
+.portfolio__link-img {
+  background-image: url(../../../images/utils/btn-link.svg);
+  height: 60px;
+  width: 29px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@media screen and (max-width: 1200px) {
+  .portfolio__title {
+    min-width: 968px;
+  }
+
+  .portfolio__links {
+    min-width: 968px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .portfolio__title {
+    min-width: 668px;
+  }
+
+  .portfolio__links {
+    min-width: 668px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .portfolio__link-img {
+    width: 27px;
+  }
+
+  .portfolio__link-text {
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 50px;
+    letter-spacing: -0.04em;
+  }
+
+  .portfolio {
+    padding: 0 0 80px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .portfolio {
+    padding: 0 0 70px;
+  }
+  
+  .portfolio__title {
+    min-width: 292px;
+    margin: 0 auto 40px;
+  }
+
+  .portfolio__links {
+    min-width: 292px;
+  }
+
+  .portfolio__link-text {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: -0.04em;
+  }
+
+  .portfolio__link-img {
+    width: 18px;
+    height: 28px;
+  }
+}

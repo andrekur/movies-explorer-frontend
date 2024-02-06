@@ -1,0 +1,204 @@
+.aboutproject {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 110px 0 110px;
+  background: #FAFAFA;
+}
+
+.aboutproject__header {
+  margin: 0 auto 70px;
+  min-width: 1140px;
+  padding-bottom: 23px;
+  border-bottom: 1px solid #000;
+  color: #000;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: -0.88px;
+}
+
+.aboutproject__description {
+  margin: 0 auto 110px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 0 40px;
+}
+
+.aboutproject__description__item {
+  display: flex;
+  flex-direction: column;
+  gap: 26px 0;
+  max-width: 550px;
+  min-width: 284px;
+}
+
+.aboutproject__description__paragraph {
+  margin: 0;
+  color: #000;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.8px;
+}
+
+.aboutproject__description__text {
+  color: #000;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.aboutproject__deadline {
+  margin: auto;
+  display: grid;
+  min-width: 1140px;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 36px 26px;
+  gap: 5px 0;
+}
+
+.aboutproject__deadline__text {
+  margin: 0;
+  padding: 9px 0 0;
+  min-height: 18px;
+  color: black;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+
+.aboutproject__deadline__text_color-gray {
+  color: #A0A0A0;
+}
+
+.aboutproject__deadline__text_color-white {
+  color: white;
+}
+
+.aboutproject__deadline__background-gray {
+  background: #F2F2F2;
+}
+
+.aboutproject__deadline__background-blue {
+  background: #3456F3;
+}
+
+@media screen and (max-width: 1200px) {
+  .aboutproject__header {
+    min-width: 968px;
+  }
+
+  .aboutproject {
+    padding: 90px 0;
+  }
+
+  .aboutproject__description {
+    min-width: 968px;
+  }
+
+  .aboutproject__deadline {
+    min-width: 968px;
+  }
+
+  .aboutproject__description__item {
+    max-width: 450px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .aboutproject__header {
+    min-width: 668px;
+  }
+
+  .aboutproject__description {
+    margin: 0 auto 93px;
+    min-width: 668px;
+    gap: 0 30px;
+  }
+
+  .aboutproject__deadline {
+    min-width: 668px;
+  }
+
+  .aboutproject__description__item {
+    max-width: 319px;
+    gap: 22px 0;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .aboutproject__description__text {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .aboutproject {
+    padding: 70px 0 69px;
+  }
+
+  .aboutproject__header {
+    min-width: 284px;
+    margin: 0 auto 60px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.04em;
+    text-align: left;
+  }
+
+  .aboutproject__description__paragraph {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.04em;
+    text-align: left;
+  }
+  
+  .aboutproject__description__text {
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+
+  .aboutproject__description {
+    margin: 0 auto 60px;
+    min-width: 284px;
+    gap: 56px 0;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .aboutproject__description__item {
+    max-width: 284px;
+    gap: 16px 0;
+  }
+
+  .aboutproject__deadline {
+    min-width: 284px;
+    grid-template-columns: (100px, 184px);
+    grid-template-rows: 35px 24px;
+  }
+
+  .aboutproject__deadline__text {
+    padding: 11px 0 0;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 13px;
+    letter-spacing: 0em;
+    text-align: center;
+  }
+}

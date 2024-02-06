@@ -1,0 +1,239 @@
+.header {
+  padding: 18px 0;
+  background-color: #FAFAFA;
+}
+
+.header_background_gray {
+  background-color: #DDDEE3;
+}
+
+.header__block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__navigation {
+  min-width: 1102px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.header__logo {
+  background-image: url(../../images/menu/logo.svg);
+  background-repeat: no-repeat;
+  width: 38px;
+  height: 38px;
+}
+
+.header__logo_large {
+  width: 396px;
+}
+
+.header__desktop-menu__links {
+  display: flex;
+  margin-left: 45px;
+  gap: 0 16px;
+  align-items: center;
+}
+
+.header__link {
+  margin: 0;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0em;
+  color: #000000;
+}
+
+.header__link:hover {
+  opacity: .7;
+}
+
+.header__link_active {
+  font-weight: 500;
+}
+
+.header__auth-block {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0 30px;
+}
+
+.header__sign-btn {
+  border: 0;
+  border-radius: 3px;
+  padding: 0;
+  height: 32px;
+  width: 76px;
+  background-color: #3456F3;
+  font-size: 12px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.header__signup-btn {
+  min-width: 77px;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: center;
+}
+
+.header__profile-link {
+  padding: 0;
+  width: 100px;
+  height: 32px;
+  background-image: url(../../images/menu/profile-icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  border: 0;
+  border-radius: 50px;
+}
+
+.header__desktop-menu {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header__mobile-menu {
+  z-index: 1;
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, .3);
+}
+
+.header__mobile-menu-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+  box-sizing: border-box;
+  padding: 159px 90px 90px;
+  width: 520px;
+  background-color: #FAFAFA;
+  right: 0;
+  top: 0;
+  height: 1024px;
+}
+
+.header__mobile-menu__links {
+  display: flex;
+  flex-direction: column;
+  gap: 22px 0;
+}
+
+.header__mobile-menu_open-btn {
+  visibility: hidden;
+  padding: 0;
+  border: 0;
+  background-color: inherit;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(../../images/menu/mobile-icon.svg);
+}
+
+.header__mobile-menu_close-btn {
+  z-index: 3;
+  position: absolute;
+  padding: 0;
+  width: 22px;
+  height: 22px;
+  border: 0;
+  right: 22px;
+  top: 22px;
+  background-color: inherit;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(../../images/menu/btn-close.svg);
+}
+
+@media screen and (max-width: 1200px) {
+  .header__navigation {
+    min-width: 930px;
+  }
+
+  .header__desktop-menu__links {
+    margin-left: 44px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .header__navigation {
+    min-width: 630px;
+  }
+
+  .header__desktop-menu {
+    visibility: hidden;
+  }
+
+  .header__mobile-menu {
+    visibility: visible;
+  }
+
+  .header__mobile-menu_open-btn {
+    visibility: visible;
+    width: 40px;
+    height: 38px;
+  }
+
+  .header__link {
+    box-sizing: border-box;
+    min-height: 28px;
+    margin: 0 auto;
+    padding-bottom: 4px;
+  }
+
+  .header__link_active {
+    font-weight: 400;
+    border-bottom: 2px solid black;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .header {
+    padding: 13px 0;
+  }
+
+  .header__navigation {
+    min-width: 214px;
+  }
+
+  .header__desktop-menu {
+    max-width: 214px;
+  }
+
+  .header__mobile-menu-content {
+    width: 100%;
+    height: 780px;
+    padding: 144px 10px 46px;
+  }
+
+  .header__link  {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0px;
+    text-align: center;
+
+  }
+}
