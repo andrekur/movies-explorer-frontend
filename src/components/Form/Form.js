@@ -1,11 +1,12 @@
 import React from "react";
 
-import logo from "../../images/menu/logo.svg"
+import Logo from "../Logo/Logo";
+
 
 function Form({title, onSubmit, children, submitButtonText, additionalText, additionalLinkText, additionlaLink, }) {
   return (
     <div className="form__content">
-      <img className="form__logo" src={logo} alt='Логотип проекта'/>
+      <Logo/>
       <h2 className="form__title">{title}</h2>
       <form className="form" onSubmit={onSubmit}>
         { children }

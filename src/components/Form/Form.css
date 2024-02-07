@@ -9,13 +9,6 @@
   flex-direction: column;
 }
 
-.form__logo {
-  border: 0;
-  margin: 70px 0 40px;
-  width: 38px;
-  height: 38px;
-}
-
 .form__title {
   margin: 0 0 40px;
   font-size: 24px;
@@ -104,10 +97,6 @@
 }
 
 @media screen and (max-width: 500px) {
-  .form__logo {
-    margin: 56px 0 50px;
-  }
-
   .form__content {
     align-items: center;
   }

@@ -3,6 +3,7 @@ import { NavLink, useLocation} from 'react-router-dom';
 
 import { useMenuClose } from '../../hooks/menuOverlayClick';
 import { isHeadActivePath} from '../../consts/consts'
+import Logo from '../Logo/Logo'
 
 function Header({loggedIn}) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -25,7 +26,7 @@ function Header({loggedIn}) {
     return (
       <header className={`header ${ isMainPage ? 'header_background_gray' : ''}`}>
         <div className="header__block ">
-          <div className={'header__logo'}/>
+          <Logo/>
           <div className="header__navigation">
             { loggedIn &&
               <div className="header__desktop-menu">

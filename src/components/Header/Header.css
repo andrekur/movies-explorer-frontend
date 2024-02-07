@@ -21,18 +21,6 @@
   align-items: center;
 }
 
-.header__logo {
-  background-image: url(../../images/menu/logo.svg);
-  background-repeat: no-repeat;
-  object-fit: cover;
-  min-width: 38px;
-  height: 38px;
-}
-
-.header__logo_large {
-  width: 396px;
-}
-
 .header__desktop-menu__links {
   display: flex;
   margin-left: 45px;
@@ -230,10 +218,8 @@
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 500px) {
   .header {
     padding: 13px 14px;
   }
 }
-
-

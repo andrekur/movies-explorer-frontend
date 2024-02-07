@@ -1,0 +1,13 @@
+.logo {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+}
+
+.logo__image {
+  background-image: url(../../images/menu/logo.svg);
+  background-repeat: no-repeat;
+  object-fit: cover;
+  min-width: 38px;
+  height: 38px;
+}
