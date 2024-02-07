@@ -1,4 +1,38 @@
 .movies {
   margin: 0;
   background-color: #FAFAFA;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.movies__pagination {
+  border: 0;
+  padding: 0;
+  margin: 50px auto 80px;
+  background: #F4F4F4;
+  width: 320px;
+  height: 36px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 0px;
+}
+
+.movies__pagination:hover {
+  opacity: .8;
+}
+
+@media screen and (max-width: 800px) {
+  .movies__pagination {
+    font-weight: 400;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .movies__pagination {
+    width: 240px;
+    height: 36px;
+  }
 }

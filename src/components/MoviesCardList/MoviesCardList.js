@@ -1,8 +1,6 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-import { cards } from "../../consts/CardsData"
-
-function MoviesCardList({page}) {
+function MoviesCardList({page, cards}) {
   return (
     <ul className="moviescardlist">
       {cards.map((card) => {
