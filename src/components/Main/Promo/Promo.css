@@ -44,6 +44,12 @@
 }
 
 @media screen and (max-width: 750px) {
+  .promo__text {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 320px) {
   .promo {
     min-height: 570px;
   }

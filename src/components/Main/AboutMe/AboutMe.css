@@ -1,14 +1,14 @@
 .aboutme {
   box-sizing: border-box;
-  padding: 110px 0 100px;
+  padding: 110px 70px 100px;
   background: #FAFAFA;
   display: flex;
   flex-direction: column;
 }
 
 .aboutme__title {
-  margin: 0 auto 66px;
-  min-width: 1140px;
+  width: 100%;
+  margin: 0 0 66px;
   padding-bottom: 23px;
   border-bottom: 1px solid #000;
   color: #000;
@@ -20,8 +20,7 @@
 }
 
 .aboutme__block {
-  margin: 0 auto;
-  min-width: 1140px;
+  height: 327px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -57,7 +56,7 @@
 }
 
 .aboutme__history {
-  margin: 0 0 99px;
+  margin: 0 0 78px;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -75,25 +74,8 @@
   text-align: left;
 }
 
-@media screen and (max-width: 1200px) {
-  .aboutme__title {
-    min-width: 968px;
-  }
-
-  .aboutme__block {
-    min-width: 968px;
-  }
-}
 
 @media screen and (max-width: 1000px) {
-  .aboutme__title {
-    min-width: 668px;
-  }
-
-  .aboutme__block {
-    min-width: 668px;
-  }
-
   .aboutme__author-image {
     width: 255px;
     height: 307px;
@@ -103,13 +85,12 @@
     font-size: 12px;
     max-width: 364px;
     line-height: 18px;
-    letter-spacing: 0px;
   }
 }
 
 @media screen and (max-width: 800px) {
   .aboutme {
-    padding: 90px 0 91px;
+    padding: 90px 50px 91px;
   }
 
   .aboutme__history {
@@ -117,7 +98,6 @@
     font-size: 12px;
     font-weight: 400;
     line-height: 18px;
-    letter-spacing: 0px;
   }
 
   .aboutme__job {
@@ -125,7 +105,6 @@
     font-size: 12px;
     font-weight: 500;
     line-height: 18px;
-    letter-spacing: 0px;
   }
 
   .aboutme__name {
@@ -133,7 +112,6 @@
     font-size: 40px;
     font-weight: 400;
     line-height: 40px;
-    letter-spacing: -0.04em;
   }
 
   .aboutme__link {
@@ -146,13 +124,12 @@
 
 @media screen and (max-width: 750px) {
   .aboutme {
-    padding: 70px 0 70px;
+    padding: 70px 18px 70px;
   }
 
   .aboutme__title {
     margin: 0 auto 60px;
     padding-bottom: 28px;
-    min-width: 292px;
     font-size: 18px;
     font-weight: 400;
     line-height: 22px;
@@ -160,7 +137,7 @@
   }
 
   .aboutme__block {
-    min-width: 292px;
+    height: 654px;
     flex-direction: column-reverse;
     align-items: center;
   }
@@ -179,7 +156,6 @@
     font-size: 30px;
     font-weight: 400;
     line-height: 36px;
-    letter-spacing: -0.04em;
     text-align: left;
   }
 
@@ -187,7 +163,6 @@
     font-size: 11px;
     font-weight: 500;
     line-height: 16px;
-    letter-spacing: 0px;
   }
 
   .aboutme__history {
@@ -195,7 +170,6 @@
     font-size: 11px;
     font-weight: 400;
     line-height: 16px;
-    letter-spacing: 0px;
   }
 
   .aboutme__link {
