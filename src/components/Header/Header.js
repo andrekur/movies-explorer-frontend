@@ -44,7 +44,9 @@ function Header({loggedIn}) {
               </div>
             }
           </div>
-          <button className="header__mobile-menu-open-btn" onClick={handleOpenMobileMenu} type="button"/>
+          {loggedIn && 
+            <button className="header__mobile-menu-open-btn" onClick={handleOpenMobileMenu} type="button"/>
+          }
         </div>
         { mobileMenuOpen && loggedIn && 
             <div className="header__mobile-menu">

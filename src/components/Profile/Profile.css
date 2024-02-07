@@ -54,7 +54,7 @@
 
 .profile__save {
   border: 0;
-  margin: 220px auto 0;
+  margin: 203px auto 0;
   padding: 0;
   background-color: inherit;
   font-size: 13px;
@@ -89,6 +89,10 @@
 
   .profile__save {
     margin: 193px auto 0;
+  }
+
+  .profile__title {
+    margin: 0 0 96px;
   }
 }
 

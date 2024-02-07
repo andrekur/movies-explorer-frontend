@@ -1,18 +1,25 @@
 .register {
   width: 396px;
-  margin: 0 auto;
+  margin: 70px auto;
 }
 
 .register__form-free-hight {
-  height: 150px;
+  height: 128px;
+}
+
+@media screen and (max-width: 800px) {
+  .register {
+    margin: 232px auto;
+  }
 }
 
 @media screen and (max-width: 500px) {
   .register {
     width: 260px;
+    margin: 56px auto;
   }
 
   .register__form-free-hight {
-    height: 222px;
+    height: 220px;
   }
 }

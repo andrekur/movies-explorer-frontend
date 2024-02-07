@@ -10,7 +10,7 @@
 }
 
 .form__title {
-  margin: 0 0 40px;
+  margin: 40px 0;
   font-size: 24px;
   font-weight: 500;
   line-height: 29px;
@@ -97,8 +97,22 @@
 }
 
 @media screen and (max-width: 500px) {
+  .form__save {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+  }
+
   .form {
     align-items: center;
+  }
+
+  .form__title {
+    margin: 50px 0 80px;
+  }
+
+  .form__content {
+    width: 100%;
   }
 
   .form__additional {
