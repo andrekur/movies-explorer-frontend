@@ -2,8 +2,8 @@ import React from "react";
 
 function Portfolio() {
   return (
-    <div className="portfolio">
-      <h4 className="portfolio__title">Портфолио</h4>
+    <section className="portfolio">
+      <h2 className="portfolio__title">Портфолио</h2>
       <ul className="portfolio__links">
         <li className="portfolio__link">
           <p className="portfolio__link-text">Статичный сайт</p>
@@ -18,7 +18,7 @@ function Portfolio() {
           <div className="portfolio__link-img"/>
         </li>
       </ul>
-    </div>
+    </section>
   )
 }
 

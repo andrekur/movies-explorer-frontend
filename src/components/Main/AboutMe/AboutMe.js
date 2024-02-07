@@ -4,8 +4,8 @@ import Avatar from '../../../images/utils/author-photo.jpg'
 
 function AboutMe() {
   return (
-    <div className="aboutme" id="id_about_student">
-      <h4 className="aboutme__title">Студент</h4>
+    <section className="aboutme" id="id_about_student">
+      <h2 className="aboutme__title">Студент</h2>
       <div className="aboutme__block">
         <div className="aboutme__description-block">
           <p className="aboutme__name">Андрей</p>
@@ -15,9 +15,9 @@ function AboutMe() {
           </p>
           <a className="aboutme__link" href="https://github.com/andrekur">Github</a>
         </div>
-        <img className="aboutme__author-image" src={Avatar}/>
+        <img className="aboutme__author-image" src={Avatar} alt="Фотография автора"/>
       </div>
-    </div>
+    </section>
   )
 }
 

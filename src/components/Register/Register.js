@@ -20,7 +20,7 @@ function Register() {
   }
 
   return (
-    <div className="register">
+    <section className="register">
       <Form onSubmit={handleSubmit} title='Добро пожаловать!' submitButtonText='Зарегистрироваться' additionalText='Уже зарегистрированы?' additionalLinkText='Войти' additionlaLink='/signin'>
         <span className="form__input-helper">Имя</span>
         <input className="form__input form__input_field_name" id="name" value={values.name || ''} onChange={handleChange} type="text" name="name" placeholder="Имя" minLength='2' required/>
@@ -33,7 +33,7 @@ function Register() {
         <span className="form__input-error">{errors.password || ''}</span>
         <span className="register__form-free-hight"></span>
       </Form>
-    </div>
+    </section>
   )
 }
 

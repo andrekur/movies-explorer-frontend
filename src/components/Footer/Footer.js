@@ -16,8 +16,8 @@ function Footer() {
         <div className="footer__block">
           <p className="footer__year">© 2024</p>
           <ul className="footer__links">
-            <a className="footer__link" href="#">Яндекс.Практикум</a>
-            <a className="footer__link" href="#">Github</a>
+            <li><a className="footer__link" href="https://practicum.yandex.ru/" rel="noreferrer" target="_blank">Яндекс.Практикум</a></li>
+            <li><a className="footer__link" href="https://github.com/andrekur" rel="noreferrer" target="_blank">Github</a></li>
           </ul>
         </div>
       </footer>

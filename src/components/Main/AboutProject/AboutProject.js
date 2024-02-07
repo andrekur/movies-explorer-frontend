@@ -2,25 +2,25 @@ import React from "react";
 
 function AboutProject() {
   return (
-    <div className="aboutproject" id="id_about_project">
-      <h4 className="aboutproject__header">О проекте</h4>
-      <div className="aboutproject__description">
-        <div className="aboutproject__description__item">
-          <p className="aboutproject__description__paragraph">Дипломный проект включал 5 этапов</p>
-          <a className="aboutproject__description__text">Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки.</a>
+    <section className="about-project" id="id_about_project">
+      <h2 className="about-project__header">О проекте</h2>
+      <div className="about-project__content">
+        <div className="about-project__item">
+          <p className="about-project__paragraph">Дипломный проект включал 5 этапов</p>
+          <p className="about-project__text">Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки.</p>
         </div>
-        <div className="aboutproject__description__item">
-          <p className="aboutproject__description__paragraph">На выполнение диплома ушло 5 недель</p>
-          <a className="aboutproject__description__text">У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</a>
+        <div className="about-project__item">
+          <p className="about-project__paragraph">На выполнение диплома ушло 5 недель</p>
+          <p className="about-project__text">У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</p>
         </div>
       </div>
-      <section className="aboutproject__deadline">
-        <p className="aboutproject__deadline__text aboutproject__deadline__background-blue aboutproject__deadline__text_color-white">1 неделя</p>
-        <p className="aboutproject__deadline__text aboutproject__deadline__background-gray">4 недели</p>
-        <p className="aboutproject__deadline__text aboutproject__deadline__text_color-gray">Back-end</p>
-        <p className="aboutproject__deadline__text aboutproject__deadline__text_color-gray">Front-end</p>
-      </section>
-    </div>
+      <div className="about-project__deadline">
+        <p className="about-project__deadline-text about-project__deadline-text_background-blue about-project__deadline-text_color-white">1 неделя</p>
+        <p className="about-project__deadline-text about-project__deadline-text_background-gray">4 недели</p>
+        <p className="about-project__deadline-text about-project__deadline-text_color-gray">Back-end</p>
+        <p className="about-project__deadline-text about-project__deadline-text_color-gray">Front-end</p>
+      </div>
+    </section>
   )
 }
 

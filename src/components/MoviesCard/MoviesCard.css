@@ -27,7 +27,7 @@
   background-color: #ffffff;
 }
 
-.moviescard__content__hight-block {
+.moviescard__hight-block {
   display: flex;
   justify-content: space-between;
 }

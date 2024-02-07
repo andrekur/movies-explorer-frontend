@@ -24,13 +24,13 @@ function Header({loggedIn}) {
 
   if (isHeaderActive) {
     return (
-      <header className={`header ${ isMainPage ? 'header_background_gray' : ''}`}>
+      <header className={`header ${ isMainPage ? 'header_background-gray' : ''}`}>
         <div className="header__block ">
           <Logo/>
           <div className="header__navigation">
             { loggedIn &&
               <div className="header__desktop-menu">
-                <nav className="header__desktop-menu__links">
+                <nav className="header__desktop-menu-links">
                   <NavLink to="/movies" className={({isActive}) => `header__link ${isActive ? "header__link_active" : ""} `}>Фильмы</NavLink>
                   <NavLink to="/saved-movies" className={({isActive}) => `header__link ${isActive ? "header__link_active" : ""}`}>Сохранённые фильмы</NavLink>
                 </nav>
@@ -39,22 +39,22 @@ function Header({loggedIn}) {
             }
             { !loggedIn &&
               <div className="header__auth-block">
-                <button className="header__signup-btn">Регистрация</button>
-                <button className="header__sign-btn">Войти</button>
+                <button className="header__signup-btn" type="button">Регистрация</button>
+                <button className="header__sign-btn" type="button">Войти</button>
               </div>
             }
           </div>
-          <button className="header__mobile-menu_open-btn" onClick={handleOpenMobileMenu}/>
+          <button className="header__mobile-menu-open-btn" onClick={handleOpenMobileMenu} type="button"/>
           { mobileMenuOpen && loggedIn && 
             <div className="header__mobile-menu">
               <div className="header__mobile-menu-content">
-                <nav className="header__mobile-menu__links">
+                <nav className="header__mobile-menu-links">
                   <NavLink to="/" className={({isActive}) => `header__link ${isActive ? "header__link_active" : ""} `}>Главная</NavLink>
                   <NavLink to="/movies" className={({isActive}) => `header__link ${isActive ? "header__link_active" : ""} `}>Фильмы</NavLink>
                   <NavLink to="/saved-movies" className={({isActive}) => `header__link ${isActive ? "header__link_active" : ""}`}>Сохранённые фильмы</NavLink>
                 </nav>
                 <NavLink className="header__profile-link" to='/profile'/>
-                <button className="header__mobile-menu_close-btn" onClick={handleOpenMobileMenu}/>
+                <button className="header__mobile-menu_close-btn" onClick={handleOpenMobileMenu} type="button"/>
               </div>
             </div>
           }

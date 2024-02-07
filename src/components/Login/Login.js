@@ -20,7 +20,7 @@ function Login() {
   }
 
   return (
-    <div className="login">
+    <section className="login">
       <Form onSubmit={handleSubmit} title='Рады видеть!' submitButtonText='Войти' additionalText='Ещё не зарегистрированы?' additionalLinkText='Регистрация' additionlaLink='/signup'>
         <span className="form__input-helper">E-mail</span>
         <input className="form__input form__input_field_email" id="email" value={values.email || ''} onChange={handleChange} type="email" name="email" placeholder="email" required/>
@@ -30,7 +30,7 @@ function Login() {
         <span className="form__input-error">{errors.password || ''}</span>
         <span className="login__form-free-hight"></span>
       </Form>
-    </div>
+    </section>
   )
 }
 

@@ -4,20 +4,20 @@ import searchLogo from "../../images/search/icon.svg"
 
 function SearchForm({byAllFilms,}) {
   return (
-    <div className="search">
-      <div className="search__input-block">
+    <section className="search">
+      <form className="search__input-block">
         <div className="search__content">
           <img className="search__logo" alt="иконка поиска" src={searchLogo}/>
           <input className="search__input" defaultValue="Фильм"></input>
-          <button className="search__btn-search"/>
+          <button className="search__btn-search" type="submit"/>
         </div>
         <div className="search__extended-block">
-          <button className="search__extended-block__btn-short"/>
-          <span className="search__extended-block__text">Короткометражки</span>
+          <button className="search__btn-filter-short" type="submit"/>
+          <span className="search__btn-filter-text">Короткометражки</span>
         </div>
-      </div>
+      </form>
       <span className="search__line"></span>
-    </div>
+    </section>
   )
 }
 

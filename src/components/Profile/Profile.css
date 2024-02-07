@@ -20,7 +20,7 @@
   color: black;
 }
 
-.profile__form__input-block {
+.profile__input-block {
   display: flex;
   justify-content: space-between;
 }
@@ -74,7 +74,7 @@
   letter-spacing: 0px;
 }
 
-.profile__form__line {
+.profile__line {
   width: 100%;
   border: 1px solid #E8E8E8;
   margin-bottom: 17px;

@@ -1,4 +1,4 @@
-.aboutproject {
+.about-project {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -6,7 +6,7 @@
   background: #FAFAFA;
 }
 
-.aboutproject__header {
+.about-project__header {
   margin: 0 0 70px;
   width: 100%;
   padding-bottom: 23px;
@@ -19,7 +19,7 @@
   letter-spacing: -0.88px;
 }
 
-.aboutproject__description {
+.about-project__content {
   margin: 0 0 110px;
   display: flex;
   flex-direction: row;
@@ -27,13 +27,13 @@
   gap: 0 40px;
 }
 
-.aboutproject__description__item {
+.about-project__item {
   display: flex;
   flex-direction: column;
   gap: 26px 0;
 }
 
-.aboutproject__description__paragraph {
+.about-project__paragraph {
   margin: 0;
   color: #000;
   font-size: 20px;
@@ -43,7 +43,8 @@
   letter-spacing: -0.8px;
 }
 
-.aboutproject__description__text {
+.about-project__text {
+  margin: 0;
   color: #000;
   font-size: 14px;
   font-style: normal;
@@ -51,7 +52,7 @@
   line-height: 20px;
 }
 
-.aboutproject__deadline {
+.about-project__deadline {
   margin: 0;
   display: grid;
   width: 100%;
@@ -60,7 +61,7 @@
   gap: 5px 0;
 }
 
-.aboutproject__deadline__text {
+.about-project__deadline-text {
   margin: 0;
   padding: 9px 0 0;
   min-height: 18px;
@@ -72,39 +73,39 @@
   text-align: center;
 }
 
-.aboutproject__deadline__text_color-gray {
+.about-project__deadline-text_color-gray {
   color: #A0A0A0;
 }
 
-.aboutproject__deadline__text_color-white {
+.about-project__deadline-text_color-white {
   color: white;
 }
 
-.aboutproject__deadline__background-gray {
+.about-project__deadline-text_background-gray {
   background: #F2F2F2;
 }
 
-.aboutproject__deadline__background-blue {
+.about-project__deadline-text_background-blue {
   background: #3456F3;
 }
 
 @media screen and (max-width: 1000px) {
-  .aboutproject__description {
+  .about-project__content {
     margin: 0 0 93px;
     gap: 0 30px;
   }
 
-  .aboutproject__description__item {
+  .about-project__item {
     gap: 22px 0;
   }
 }
 
 @media screen and (max-width: 800px) {
-  .aboutproject {
+  .about-project {
     padding: 110px 50px 110px;
   }
 
-  .aboutproject__description__text {
+  .about-project__text {
     font-size: 12px;
     font-weight: 400;
     line-height: 18px;
@@ -114,11 +115,11 @@
 }
 
 @media screen and (max-width: 750px) {
-  .aboutproject {
+  .about-project {
     padding: 70px 50px 69px;
   }
 
-  .aboutproject__header {
+  .about-project__header {
     margin: 0 0 60px;
     font-size: 18px;
     font-weight: 400;
@@ -127,7 +128,7 @@
     text-align: left;
   }
 
-  .aboutproject__description__paragraph {
+  .about-project__paragraph {
     font-size: 18px;
     font-weight: 400;
     line-height: 22px;
@@ -135,7 +136,7 @@
     text-align: left;
   }
   
-  .aboutproject__description__text {
+  .about-project__text {
     font-size: 11px;
     font-weight: 400;
     line-height: 16px;
@@ -143,12 +144,12 @@
     text-align: left;
   }
 
-  .aboutproject__description__item {
+  .about-project__item {
     max-width: 284px;
     gap: 16px 0;
   }
 
-  .aboutproject__deadline__text {
+  .about-project__deadline-text {
     padding: 11px 0 0;
     font-size: 11px;
     font-weight: 400;
@@ -159,11 +160,11 @@
 }
 
 @media screen and (max-width: 500px) {
-  .aboutproject {
+  .about-project {
     padding: 70px 18px 69px;
   }
 
-  .aboutproject__description {
+  .about-project__content {
     margin: 0 0 60px;
     gap: 56px 0;
     flex-direction: column;

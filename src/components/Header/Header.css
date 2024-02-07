@@ -3,7 +3,7 @@
   background-color: #FAFAFA;
 }
 
-.header_background_gray {
+.header_background-gray {
   background-color: #DDDEE3;
 }
 
@@ -21,7 +21,7 @@
   align-items: center;
 }
 
-.header__desktop-menu__links {
+.header__desktop-menu-links {
   display: flex;
   margin-left: 45px;
   gap: 0 16px;
@@ -125,13 +125,13 @@
   height: 1024px;
 }
 
-.header__mobile-menu__links {
+.header__mobile-menu-links {
   display: flex;
   flex-direction: column;
   gap: 22px 0;
 }
 
-.header__mobile-menu_open-btn {
+.header__mobile-menu-open-btn {
   visibility: hidden;
   padding: 0;
   border: 0;
@@ -157,7 +157,7 @@
 }
 
 @media screen and (max-width: 1200px) {
-  .header__desktop-menu__links {
+  .header__desktop-menu-links {
     margin-left: 44px;
   }
 }
@@ -171,7 +171,7 @@
     visibility: visible;
   }
 
-  .header__mobile-menu_open-btn {
+  .header__mobile-menu-open-btn {
     visibility: visible;
     min-width: 40px;
     height: 38px;

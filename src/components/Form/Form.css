@@ -78,7 +78,7 @@
   gap: 0 6px;
 }
 
-.form__additional__text {
+.form__additional-text {
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
@@ -86,7 +86,7 @@
   color: #A0A0A0;
 }
 
-.form__additional__link {
+.form__additional-link {
   text-decoration: none;
   font-size: 14px;
   font-weight: 400;
@@ -97,7 +97,7 @@
 }
 
 @media screen and (max-width: 500px) {
-  .form__content {
+  .form {
     align-items: center;
   }
 
@@ -105,14 +105,14 @@
     padding-top: 14px;
   }
 
-  .form__additional__text {
+  .form__additional-text {
     font-size: 12px;
     font-weight: 400;
     line-height: 15px;
     letter-spacing: 0em;
   }
 
-  .form__additional__link {
+  .form__additional-link {
     font-size: 12px;
     font-weight: 400;
     line-height: 15px;

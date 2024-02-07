@@ -27,24 +27,24 @@ function Profile() {
   }
 
   return (
-    <div className="profile">
+    <section className="profile">
       <h2 className="profile__title">{`Привет, ${curentUser.name}!`}</h2>
       <form className="profile__form">
-        <div className="profile__form__input-block">
+        <div className="profile__input-block">
           <span className="profile__input-helper">Имя</span>
           <input className="profile__input profile__input_field_name" id="name" value={values.name || ''} onChange={handleChange} type="text" name="name" placeholder="Имя" minLength="2" maxLength="40" required/>
         </div>
         <span className="profile__input-error">{errors.name || ''}</span>
-        <span className="profile__form__line"></span>
-        <div className="profile__form__input-block">
+        <span className="profile__line"></span>
+        <div className="profile__input-block">
           <span className="profile__input-helper">E-mail</span>
           <input className="profile__input profile__input_field_email"  id="email" value={values.email || ''} onChange={handleChange} type="email" name="email" placeholder="email" required/>
         </div>
         <span className="profile__input-error">{errors.email || ''}</span>
-        <button className='profile__save' onSubmit={handleSubmit} disabled={!isValid}>Редактировать</button>
+        <button className='profile__save' onSubmit={handleSubmit} disabled={!isValid} type="submit">Редактировать</button>
       </form>
-      <button className="profile__sign-out-btn" onClick={handleLogout}>Выйти из аккаунта</button>
-    </div>
+      <button className="profile__sign-out-btn" onClick={handleLogout} type="button">Выйти из аккаунта</button>
+    </section>
   )
 }
 
