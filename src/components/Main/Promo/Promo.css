@@ -71,7 +71,6 @@
   }
 }
 
-
 .navtab {
   display: flex;
   flex-direction: column;
@@ -98,6 +97,10 @@
   font-weight: 500;
   line-height: 16px;
   border-bottom: 1px solid black;
+}
+
+.navtab__link:hover {
+  opacity: .7;
 }
 
 @media screen and (max-width: 320px) {

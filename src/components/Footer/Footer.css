@@ -55,6 +55,10 @@
   text-align: right;
 }
 
+.footer__link:hover {
+  opacity: .7;
+}
+
 @media screen and (max-width: 800px) {
   .footer {
     padding: 79px 30px 20px;

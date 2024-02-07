@@ -8,7 +8,7 @@ function SearchForm({byAllFilms,}) {
       <form className="search__input-block">
         <div className="search__content">
           <img className="search__logo" alt="иконка поиска" src={searchLogo}/>
-          <input className="search__input" defaultValue="Фильм"></input>
+          <input className="search__input" defaultValue="Фильм" required></input>
           <button className="search__btn-search" type="submit"/>
         </div>
         <div className="search__extended-block">

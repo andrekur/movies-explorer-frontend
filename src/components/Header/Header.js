@@ -45,7 +45,8 @@ function Header({loggedIn}) {
             }
           </div>
           <button className="header__mobile-menu-open-btn" onClick={handleOpenMobileMenu} type="button"/>
-          { mobileMenuOpen && loggedIn && 
+        </div>
+        { mobileMenuOpen && loggedIn && 
             <div className="header__mobile-menu">
               <div className="header__mobile-menu-content">
                 <nav className="header__mobile-menu-links">
@@ -58,7 +59,6 @@ function Header({loggedIn}) {
               </div>
             </div>
           }
-        </div>
       </header>
     )
   }

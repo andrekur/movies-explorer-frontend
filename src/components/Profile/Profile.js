@@ -1,11 +1,13 @@
 import React, { useEffect, } from "react";
 
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
+import { useNavigate } from 'react-router-dom';
 
 
 function Profile() {
   const {values, handleChange, errors, isValid, setValues, resetForm} = useFormAndValidation();
   const curentUser = {name: 'Andre', email: 'test@email.ru'};
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (curentUser) {
@@ -24,6 +26,7 @@ function Profile() {
     e.preventDefault();
 
     //call Api
+    navigate('/signin', { replace: true });
   }
 
   return (
