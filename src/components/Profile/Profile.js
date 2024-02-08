@@ -31,7 +31,7 @@ function Profile() {
 
   return (
     <section className="profile">
-      <h2 className="profile__title">{`Привет, ${curentUser.name}!`}</h2>
+      <h1 className="profile__title">{`Привет, ${curentUser.name}!`}</h1>
       <form className="profile__form">
         <div className="profile__input-block">
           <span className="profile__input-helper">Имя</span>

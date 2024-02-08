@@ -17,17 +17,19 @@ function App() {
 
   return (
     <div className="page">
-      <Header loggedIn={true}/>
-      <Routes>
-        <Route path="*" element={<NotFoundPage/>}></Route>
-        <Route path="/" element={<Main/>}></Route>
-        <Route path="/movies" element={<Movies/>}></Route>
-        <Route path="/saved-movies" element={<SavedMovies/>}></Route>
-        <Route path="/profile" element={<Profile/>}></Route>
-        <Route path="/signin" element={<Login/>}></Route>
-        <Route path="/signup" element={<Register/>}></Route>
-      </Routes>
-      <Footer/>
+        <Header loggedIn={true}/>
+        <main>
+          <Routes>
+            <Route path="*" element={<NotFoundPage/>}></Route>
+            <Route path="/" element={<Main/>}></Route>
+            <Route path="/movies" element={<Movies/>}></Route>
+            <Route path="/saved-movies" element={<SavedMovies/>}></Route>
+            <Route path="/profile" element={<Profile/>}></Route>
+            <Route path="/signin" element={<Login/>}></Route>
+            <Route path="/signup" element={<Register/>}></Route>
+          </Routes>
+        </main>
+        <Footer/>
     </div>
   );
 }
