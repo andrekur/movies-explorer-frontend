@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="page">
-        <Header loggedIn={true}/>
+        <Header loggedIn={false}/>
         <main>
           <Routes>
             <Route path="*" element={<NotFoundPage/>}></Route>

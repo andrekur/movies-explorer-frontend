@@ -97,7 +97,8 @@
   }
 
   .aboutme__history {
-    margin: 0 0 87px;
+    margin: 0;
+    height: 195px;
     font-size: 12px;
     font-weight: 400;
     line-height: 18px;
@@ -122,6 +123,12 @@
     font-weight: 500;
     line-height: 17px;
     letter-spacing: 0em;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .aboutme__block {
+    height: 307px;
   }
 }
 
