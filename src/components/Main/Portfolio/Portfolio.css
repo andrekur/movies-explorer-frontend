@@ -80,9 +80,14 @@
   
   .portfolio__title {
     margin: 0 0 40px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
   }
 
   .portfolio__link {
+    background-size: 18px 18px;
+    background-position: right top;
     font-size: 18px;
     font-weight: 400;
     line-height: 28px;

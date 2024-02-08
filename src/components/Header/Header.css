@@ -213,6 +213,10 @@
 }
 
 @media screen and (max-width: 500px) {
+  .header__navigation {
+    height: 38px;
+  }  
+
   .header__link {
     padding-bottom: 7px;
   }

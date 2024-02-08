@@ -33,5 +33,6 @@
   .moviescardlist {
     grid-template-columns: repeat(1, 300px);
     gap: 20px 0;
+    padding: 40px 0 30px;
   }
 }

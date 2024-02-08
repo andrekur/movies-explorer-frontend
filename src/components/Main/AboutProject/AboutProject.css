@@ -179,4 +179,9 @@
     justify-content: center;
     align-items: center;
   }
+
+  .about-project__deadline {
+    grid-template-columns: 100px 185px;
+    gap: 1px 0;
+  }
 }

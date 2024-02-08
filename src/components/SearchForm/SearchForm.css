@@ -105,6 +105,11 @@
     padding: 80px 10px 10px;
   }
 
+  .search__input {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
   .search__content {
     justify-content: space-between;
     padding: 19px;
@@ -134,6 +139,7 @@
   }
 
   .search__extended-block {
+    gap: 0 13px;
     justify-content: center;
     margin-top: 46px;
     border: 0;
@@ -146,5 +152,12 @@
 
   .search__btn-filter-short {
     padding: 0;
+    width: 36px;
+    height: 20px;
+  }
+
+  .search__btn-filter-text {
+    font-size: 11px;
+    line-height: 18px;
   }
 }
