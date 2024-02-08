@@ -14,7 +14,8 @@ function Header({loggedIn}) {
   const isHeaderActive = isHeadActivePath.includes(pathname)
 
   useEffect(() => {
-  }, [loggedIn])
+    document.body.style.position = `${mobileMenuOpen ? 'fixed' : ''}`;
+  }, [loggedIn, mobileMenuOpen])
 
   function handleOpenMobileMenu(e) {
     e.preventDefault();
