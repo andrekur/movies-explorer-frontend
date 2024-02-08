@@ -19,6 +19,7 @@
   font-weight: 500;
   line-height: 15px;
   letter-spacing: 0px;
+  cursor: pointer;
 }
 
 .movies__pagination:hover {

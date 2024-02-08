@@ -95,6 +95,10 @@
   border-radius: 50px;
 }
 
+.header__profile-link:hover {
+  opacity: .8;
+}
+
 .header__desktop-menu {
   display: flex;
   justify-content: space-between;
@@ -135,6 +139,7 @@
 }
 
 .header__mobile-menu-open-btn {
+  cursor: pointer;
   visibility: hidden;
   padding: 0;
   border: 0;
@@ -142,6 +147,10 @@
   background-position: center;
   background-repeat: no-repeat;
   background-image: url(../../images/menu/mobile-icon.svg);
+}
+
+.header__mobile-menu-open-btn:hover {
+  opacity: .8;
 }
 
 .header__mobile-menu_close-btn {
@@ -157,6 +166,11 @@
   background-position: center;
   background-repeat: no-repeat;
   background-image: url(../../images/menu/btn-close.svg);
+  cursor: pointer;
+}
+
+.header__mobile-menu_close-btn:hover {
+  opacity: .8;
 }
 
 @media screen and (max-width: 1200px) {

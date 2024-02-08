@@ -10,3 +10,7 @@
   min-width: 38px;
   height: 38px;
 }
+
+.logo__image:hover {
+  opacity: .8;
+}

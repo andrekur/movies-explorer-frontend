@@ -29,6 +29,11 @@
   line-height: 17px;
   letter-spacing: 0em;
   color: #3456F3;
+  cursor: pointer;
+}
+
+.not-found-page__return-link:hover {
+  opacity: .7;
 }
 
 @media screen and (max-width: 800px) {

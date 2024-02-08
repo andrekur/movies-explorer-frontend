@@ -96,6 +96,10 @@
   color: #3456F3;
 }
 
+.form__additional-link:hover {
+  opacity: .7;
+}
+
 @media screen and (max-width: 500px) {
   .form__save {
     font-size: 12px;

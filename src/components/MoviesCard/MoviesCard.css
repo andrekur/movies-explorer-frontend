@@ -50,6 +50,7 @@
 }
 
 .moviescard__save-btn {
+  cursor: pointer;
   margin: 0;
   padding: 0;
   border: 0;
@@ -61,11 +62,16 @@
   background-image: url(../../images/buttons/save-film-btn.svg);
 }
 
+.moviescard__save-btn:hover {
+  opacity: .8;
+}
+
 .moviescard__save-btn_active {
   background-image: url(../../images/buttons/save-film-btn_active.svg);
 }
 
 .moviescard__delete-btn {
+  cursor: pointer;
   margin: 0;
   padding: 0;
   border: 0;
@@ -76,6 +82,10 @@
   background-repeat: no-repeat;
   background-color: transparent;
   background-image: url(../../images/buttons/delete-film-btn.svg);
+}
+
+.moviescard__delete-btn:hover {
+  opacity: .8;
 }
 
 @media screen and (max-width: 800px) {
