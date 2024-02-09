@@ -20,7 +20,7 @@ function Movies({movies, onSaveMovieClick}) {
     <section className="movies">
       <SearchForm byAllFilms={true}/>
       <MoviesCardList page='all-movies' cards={movies.slice(0, nowOnPage)} onSaveMovieClick={onSaveMovieClick}/>
-      {!(movies.length === nowOnPage || movies.length <= nowOnPage) &&
+      {!(movies.length && movies.length === nowOnPage || movies.length <= nowOnPage) &&
         <button className="movies__pagination" type="button" onClick={handleExtendCards}>Еще</button>
       }
     </section>

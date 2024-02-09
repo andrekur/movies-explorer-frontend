@@ -9,11 +9,18 @@ class MainApi{
     return fetch(url, options)
       .then((response) => {
         if (response.ok) {
-         return response.json() 
+         return response.json()
         };
 
         throw new Error(response.statusText);
       })
+  }
+
+  deleteMovie(movieId) {
+    return this._sendRequest(`${this._url}/movies/${movieId}`, {
+      method: "DELETE",
+      headers: this._headers
+    })
   }
 
   getAllSavedMovies() {

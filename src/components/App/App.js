@@ -84,24 +84,49 @@ function App() {
     };
   }, [loggedIn])
 
-  function handleSaveMovieClick(card) {
-    api.createMovie({
-      country: card.country,
-      director: card.director,
-      duration: card.duration,
-      year: card.year,
-      description: card.description,
-      image: moviesApiOptions.url + card.image.url,
-      trailer: card.trailerLink,
-      thumbnail: moviesApiOptions.url + card.image.formats.thumbnail.url,
-      nameRU: card.nameRU,
-      nameEN: card.nameEN,
-      movieId: card.id
-    })
-    .then(result => {
-      setSavedMovies(savedMovies.concat(result))
-    })
-    .catch(console.error)
+  function handleDeleteSavedFilm(savedMovie) {
+    const movie = allMovies.filter(movie => movie.id === savedMovie.movieId)[0]
+
+    _deleteSavedFilm(movie, savedMovie)
+  }
+
+  function _deleteSavedFilm(movie, savedMovie) {
+    api.deleteMovie(savedMovie._id)
+      .then(() => {
+        movie.isSaved = false;
+        setSavedMovies((state) => state.filter((c) => c._id !== savedMovie._id))
+        setAllMovies((state) => state.map((c) => c.id === movie.id ? movie : c))
+      })
+      .catch(console.error)
+  }
+
+  function handleSaveMovieClick(movie) {
+    const savedMovie = savedMovies.filter(savedMovie => savedMovie.movieId === movie.id)
+
+    if (savedMovie.length >= 1) {
+      _deleteSavedFilm(movie, savedMovie[0])
+    }
+    else {
+      api.createMovie({
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: moviesApiOptions.url + movie.image.url,
+        trailer: movie.trailerLink,
+        thumbnail: moviesApiOptions.url + movie.image.formats.thumbnail.url,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN,
+        movieId: movie.id
+      })
+      .then(result => {
+        movie.isSaved = true;
+        setSavedMovies(savedMovies.concat(result))
+        setAllMovies((state) => state.map((c) => c.id === movie.id ? movie : c))
+      })
+      .catch(console.error)
+    }
   }
 
   return (
@@ -112,7 +137,7 @@ function App() {
             <Route path="*" element={<NotFoundPage/>}></Route>
             <Route path="/" element={<Main/>}></Route>
             <Route path="/movies" element={<ProtectedRouteElement element={Movies} loggedIn={loggedIn} onSaveMovieClick={handleSaveMovieClick} movies={allMovies}/>}></Route>
-            <Route path="/saved-movies" element={<ProtectedRouteElement element={SavedMovies} loggedIn={loggedIn} savedMovies={savedMovies}/>}></Route>
+            <Route path="/saved-movies" element={<ProtectedRouteElement element={SavedMovies} loggedIn={loggedIn} savedMovies={savedMovies} onDeleteMovieClick={handleDeleteSavedFilm}/>}></Route>
             <Route path="/profile" element={<ProtectedRouteElement element={Profile} loggedIn={loggedIn}/>}></Route>
             <Route path="/signin" element={<Login onSubmit={handleLoginFormSubmit}/>}></Route>
             <Route path="/signup" element={<Register onSubmit={handleRegisterFormSubmit}/>}></Route>

@@ -1,6 +1,6 @@
 import React from "react";
 
-function MoviesCard({card, page, onSaveMovieClick}) {
+function MoviesCard({card, page, onSaveMovieClick, onDeleteMovieClick}) {
   function handleSaveMovie(e) {
     e.preventDefault()
 
@@ -10,7 +10,7 @@ function MoviesCard({card, page, onSaveMovieClick}) {
   function deleteMovie(e) {
     e.preventDefault()
 
-    // call API
+    onDeleteMovieClick(card)
   }
 
   // page: all-movies/saved-movies

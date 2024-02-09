@@ -1,6 +1,6 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({page, cards, onSaveMovieClick}) {
+function MoviesCardList({page, cards, onSaveMovieClick, onDeleteMovieClick}) {
   return (
     <ul className="moviescardlist">
       {cards && cards.map((card) => {
@@ -10,6 +10,7 @@ function MoviesCardList({page, cards, onSaveMovieClick}) {
             key={card.id || card._id}
             page={page}
             onSaveMovieClick={onSaveMovieClick}
+            onDeleteMovieClick={onDeleteMovieClick}
           />
         )
       })}
