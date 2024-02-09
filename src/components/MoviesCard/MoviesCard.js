@@ -1,11 +1,10 @@
 import React from "react";
 
-function MoviesCard({card, page}) {
-
+function MoviesCard({card, page, onSaveMovieClick}) {
   function handleSaveMovie(e) {
     e.preventDefault()
 
-    // call API
+    onSaveMovieClick(card)
   }
 
   function deleteMovie(e) {
@@ -17,10 +16,10 @@ function MoviesCard({card, page}) {
   // page: all-movies/saved-movies
   return (
     <li className="moviescard">
-      <img className="moviescard__image" alt={`фотография ${card.name}`} src={card.link}/>
+      <img className="moviescard__image" alt={`фотография ${card.nameRU}`} src={card.thumbnail}/>
       <div className="moviescard__content">
         <div className="moviescard__hight-block">
-          <h2 className="moviescard__title">{card.name}</h2>
+          <h2 className="moviescard__title">{card.nameRU}</h2>
           { page === 'all-movies' ?
             <button className={
               `moviescard__save-btn ${ card.isSaved ? 'moviescard__save-btn_active' : '' }`

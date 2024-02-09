@@ -5,7 +5,7 @@ import Form from "../Form/Form";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
 
-function Login() {
+function Login({onSubmit}) {
   const {values, handleChange, errors, isValid, setValues, resetForm} = useFormAndValidation();
 
   useEffect(() => {
@@ -15,7 +15,7 @@ function Login() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    //call Api login
+    onSubmit(values)
     resetForm();
   }
 

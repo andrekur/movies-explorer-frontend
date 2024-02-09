@@ -7,3 +7,24 @@ export const paginationMoviesSettings = {
   medium: 2*4,
   little: 1*5
 }
+
+export const mainApiOptions = {
+  url: process.env.REACT_APP_API_SERVER || "http://localhost:3000",
+  headers: {
+    'Content-Type': 'application/json',
+  }
+}
+
+export const authApiOptions = {
+  url: process.env.REACT_APP_API_SERVER || "http://localhost:3000",
+  headers: {
+    'Content-Type': 'application/json',
+  }
+}
+
+export const moviesApiOptions = {
+  url: 'https://api.nomoreparties.co',
+  headers: {
+    'Content-Type': 'application/json',
+  }
+}
