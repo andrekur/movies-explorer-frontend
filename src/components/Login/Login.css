@@ -1,0 +1,26 @@
+.login {
+  width: 396px;
+  margin: 70px auto 0;
+}
+
+.login__form-free-hight {
+  height: 197px;
+}
+
+
+@media screen and (max-width: 800px) {
+  .login {
+    margin: 232px auto 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .login {
+    margin: 56px auto 0;
+    width: 260px;
+  }
+
+  .login__form-free-hight {
+    height: 285px;
+  }
+}
