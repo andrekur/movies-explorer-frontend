@@ -5,6 +5,7 @@ import SearchForm from "../SearchForm/SearchForm";
 
 
 import { moviesApiOptions } from '../../consts/consts'
+import { filterMovies } from "../../utils/filter";
 import moviesApi from "../../utils/MoviesApi";
 
 import { getCountItemOnPage } from "../../utils/pagination";
@@ -12,24 +13,20 @@ import { getCountItemOnPage } from "../../utils/pagination";
 function Movies({onSaveMovieClick, savedMovies}) {
   const [nowOnPage, setOnPage] = useState(getCountItemOnPage());
   const [movies, setMovies] = useState([]);
+  const [wasUploaded, setWasUploaded] = useState(false);
+  const [searchWasUsed, setSearchWasUsed] = useState(false);
+
+  function loadMoviesFromStorage(moviesInStorage) {
+    setWasUploaded(true);
+    const filteredMovies = filterMovies(moviesInStorage, getStorageFilterData())
+    setMovies(filteredMovies);
+  }
 
   function getStorageFilterData(){
     const isShort = localStorage.getItem('isShort') || true
     const searchText = localStorage.getItem('searchText') || ''
 
     return {searchText, isShort}
-  }
-
-  function filterMovies(_movies, filterData) {
-    console.log(filterData)
-    console.log(_movies)
-    const filteredByDaration = filterData.isShort ? _movies.filter(movie => movie.duration <= 40) : _movies
-    console.log(filteredByDaration)
-    return filteredByDaration.filter(movie => (
-      movie.nameRU.includes(filterData.searchText)
-      || movie.nameEN.includes(filterData.searchText)
-      )
-    )
   }
 
   function handleExtendCards(e) {
@@ -39,35 +36,37 @@ function Movies({onSaveMovieClick, savedMovies}) {
   }
 
   useEffect(() => {
-    // 1)checked filter 2)call api 3)filterd
+    const moviesInStorage = JSON.parse(localStorage.getItem('movies'));
+    if (movies.length === 0 && moviesInStorage && !wasUploaded) {
+      loadMoviesFromStorage(moviesInStorage)
+      setSearchWasUsed(true)
+    }
+  }, [movies, nowOnPage])
 
-
-  }, [movies, nowOnPage]) // full rerender
-
-  function onSearchClick(type, searchText, isShort) {
-    console.log(type, searchText, isShort)
+  function onSearchClick(searchText, isShort) {
     const moviesInStorage = JSON.parse(localStorage.getItem('movies'));
 
-    if (!moviesInStorage) {
-      moviesApi.getAllMovies()
-        .then((_movies) => {
-          const savedMovieIds = savedMovies.map(obj => obj.movieId);
-          const pareparedMovies = _movies.map(obj => ({...obj, isSaved: savedMovieIds.includes(obj.id), thumbnail: (moviesApiOptions.url + obj.image.formats.thumbnail.url)}));
-          const filteredMovies = filterMovies(pareparedMovies, getStorageFilterData())
-          setMovies(filteredMovies);
-          localStorage.setItem('movies', JSON.stringify(pareparedMovies));
-        })
+    if (moviesInStorage) {
+      loadMoviesFromStorage(moviesInStorage)
+      return
     }
-    else {
-      setMovies(filterMovies(moviesInStorage, getStorageFilterData()));
-    }
+
+    moviesApi.getAllMovies()
+      .then((_movies) => {
+        const savedMovieIds = savedMovies.map(obj => obj.movieId);
+        const pareparedMovies = _movies.map(obj => ({...obj, isSaved: savedMovieIds.includes(obj.id), thumbnail: (moviesApiOptions.url + obj.image.formats.thumbnail.url)}));
+        const filteredMovies = filterMovies(pareparedMovies, getStorageFilterData())
+        localStorage.setItem('movies', JSON.stringify(pareparedMovies));
+        setMovies(filteredMovies);
+      })
+    setSearchWasUsed(true);
   }
 
   return (
     <section className="movies">
       <SearchForm byAllFilms={true} onSearchClick={onSearchClick}/>
-      <MoviesCardList page='all-movies' cards={movies.slice(0, nowOnPage)} onSaveMovieClick={onSaveMovieClick}/>
-      {!(movies.length && movies.length === nowOnPage || movies.length <= nowOnPage) &&
+      {searchWasUsed && <MoviesCardList page='all-movies' cards={movies.slice(0, nowOnPage)} onSaveMovieClick={onSaveMovieClick}/>}
+      {!(movies && (movies.length === nowOnPage || movies.length <= nowOnPage)) &&
         <button className="movies__pagination" type="button" onClick={handleExtendCards}>Еще</button>
       }
     </section>

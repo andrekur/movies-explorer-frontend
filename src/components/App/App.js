@@ -22,7 +22,6 @@ import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [allMovies, setAllMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
   const [api, setApi] = useState(null);
   const [inProgress, setInProgress] = useState(false);
@@ -82,17 +81,24 @@ function App() {
   }, [loggedIn])
 
   function handleDeleteSavedFilm(savedMovie) {
-    const movie = allMovies.filter(movie => movie.id === savedMovie.movieId)[0]
-
-    _deleteSavedFilm(movie, savedMovie)
+    const moviesInStorage = JSON.parse(localStorage.getItem('movies'));
+    if (moviesInStorage) {
+      const _movie = moviesInStorage.filter(movie => movie.id === savedMovie.movieId)[0]
+      console.log(_movie, savedMovie)
+      _deleteSavedFilm(_movie, savedMovie)
+    }
+    else {
+      setSavedMovies((state) => state.filter((c) => c._id !== savedMovie._id))
+    }
   }
 
   function _deleteSavedFilm(movie, savedMovie) {
     api.deleteMovie(savedMovie._id)
       .then(() => {
         movie.isSaved = false;
+        const moviesInStorage = JSON.parse(localStorage.getItem('movies'));
         setSavedMovies((state) => state.filter((c) => c._id !== savedMovie._id))
-        setAllMovies((state) => state.map((c) => c.id === movie.id ? movie : c))
+        localStorage.setItem('movies', JSON.stringify(moviesInStorage.map((c) => c.id === movie.id ? movie : c)));
       })
       .catch(console.error)
   }
@@ -101,6 +107,7 @@ function App() {
     const savedMovie = savedMovies.filter(savedMovie => savedMovie.movieId === movie.id)
 
     if (savedMovie.length >= 1) {
+      console.log(movie, savedMovie[0])
       _deleteSavedFilm(movie, savedMovie[0])
     }
     else {
@@ -120,7 +127,6 @@ function App() {
       .then(result => {
         movie.isSaved = true;
         setSavedMovies(savedMovies.concat(result))
-        setAllMovies((state) => state.map((c) => c.id === movie.id ? movie : c))
       })
       .catch(console.error)
     }
@@ -133,7 +139,7 @@ function App() {
           <Routes>
             <Route path="*" element={<NotFoundPage/>}></Route>
             <Route path="/" element={<Main/>}></Route>
-            <Route path="/movies" element={<ProtectedRouteElement element={Movies} savedMovies={savedMovies} loggedIn={loggedIn} onSaveMovieClick={handleSaveMovieClick} movies={allMovies}/>}></Route>
+            <Route path="/movies" element={<ProtectedRouteElement element={Movies} savedMovies={savedMovies} loggedIn={loggedIn} onSaveMovieClick={handleSaveMovieClick}/>}></Route>
             <Route path="/saved-movies" element={<ProtectedRouteElement element={SavedMovies} loggedIn={loggedIn} savedMovies={savedMovies} onDeleteMovieClick={handleDeleteSavedFilm}/>}></Route>
             <Route path="/profile" element={<ProtectedRouteElement element={Profile} loggedIn={loggedIn}/>}></Route>
             <Route path="/signin" element={<Login onSubmit={handleLoginFormSubmit}/>}></Route>
