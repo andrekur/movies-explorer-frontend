@@ -6,7 +6,6 @@ import Header from "../Header/Header";
 
 import { mainApiOptions, moviesApiOptions } from '../../consts/consts'
 import authApi from "../../utils/AuthApi";
-import moviesApi from "../../utils/MoviesApi";
 import MainApi from "../../utils/MainApi";
 
 import CurentUserContext from "../contexts/CurentUserContext"
@@ -71,10 +70,8 @@ function App() {
         })
         .then((data) => {
           const _api = new MainApi(mainApiOptions, jwt)
-          Promise.all([moviesApi.getAllMovies(), _api.getAllSavedMovies()])
-            .then(([_allMovies, _savedMovies]) => {
-              const savedMovieIds = _savedMovies.map(obj => obj.movieId);
-              setAllMovies(_allMovies.map(obj => ({...obj, isSaved: savedMovieIds.includes(obj.id), thumbnail: (moviesApiOptions.url + obj.image.formats.thumbnail.url)})));
+          _api.getAllSavedMovies()
+            .then((_savedMovies) => {
               setSavedMovies(_savedMovies);
               setCurentUser(data);
             })
@@ -136,7 +133,7 @@ function App() {
           <Routes>
             <Route path="*" element={<NotFoundPage/>}></Route>
             <Route path="/" element={<Main/>}></Route>
-            <Route path="/movies" element={<ProtectedRouteElement element={Movies} loggedIn={loggedIn} onSaveMovieClick={handleSaveMovieClick} movies={allMovies}/>}></Route>
+            <Route path="/movies" element={<ProtectedRouteElement element={Movies} savedMovies={savedMovies} loggedIn={loggedIn} onSaveMovieClick={handleSaveMovieClick} movies={allMovies}/>}></Route>
             <Route path="/saved-movies" element={<ProtectedRouteElement element={SavedMovies} loggedIn={loggedIn} savedMovies={savedMovies} onDeleteMovieClick={handleDeleteSavedFilm}/>}></Route>
             <Route path="/profile" element={<ProtectedRouteElement element={Profile} loggedIn={loggedIn}/>}></Route>
             <Route path="/signin" element={<Login onSubmit={handleLoginFormSubmit}/>}></Route>
