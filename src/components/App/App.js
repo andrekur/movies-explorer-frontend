@@ -64,13 +64,25 @@ function App() {
     setLoggedIn(false);
   }
 
+  function handleEditProfile(values, successCallBack, errCallBack) {
+
+    api.editUserProfile(values)
+      .then((data) => {
+        setCurentUser(data)
+        successCallBack()
+      })
+      .catch((err) => {
+        errCallBack(DefaultApiErrText)
+      })
+  }
+
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
     if (jwt){
       authApi.checkToken(jwt)
         .then((data) => {
           setLoggedIn(true);
-          navigate("/", {replace: true});
+          navigate("/movies", {replace: true});
           return data
         })
         .then((data) => {
@@ -146,6 +158,7 @@ function App() {
 
   return (
     <div className="page">
+      <CurentUserContext.Provider value={curentUser}>
         <Header loggedIn={loggedIn}/>
         <main>
           <Routes>
@@ -153,12 +166,13 @@ function App() {
             <Route path="/" element={<Main/>}></Route>
             <Route path="/movies" element={<ProtectedRouteElement element={Movies} savedMovies={savedMovies} loggedIn={loggedIn} onSaveMovieClick={handleSaveMovieClick}/>}></Route>
             <Route path="/saved-movies" element={<ProtectedRouteElement element={SavedMovies} loggedIn={loggedIn} savedMovies={savedMovies} onDeleteMovieClick={handleDeleteSavedFilm}/>}></Route>
-            <Route path="/profile" element={<ProtectedRouteElement element={Profile} loggedIn={loggedIn}/>}></Route>
+            <Route path="/profile" element={<ProtectedRouteElement element={Profile} loggedIn={loggedIn} onSubmit={handleEditProfile} logout={handleLogout}/>}></Route>
             <Route path="/signin" element={<Login onSubmit={handleLoginFormSubmit}/>}></Route>
             <Route path="/signup" element={<Register onSubmit={handleRegisterFormSubmit}/>}></Route>
           </Routes>
         </main>
         <Footer/>
+      </CurentUserContext.Provider>
     </div>
   );
 }
