@@ -181,6 +181,8 @@
   }
 
   .about-project__deadline {
+    margin: auto;
+    max-width: 285px;
     grid-template-columns: 100px 185px;
     gap: 1px 0;
   }

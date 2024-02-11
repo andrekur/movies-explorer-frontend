@@ -11,7 +11,7 @@ function SearchForm({byAllFilms, onSearchClick}) {
 
   useEffect(() => {
     if (byAllFilms) {
-      const isShort = localStorage.getItem('isShort') || true;
+      const isShort = Boolean(localStorage.getItem('isShort') === 'true');
       setIsShort(isShort)
       const searchText = localStorage.getItem('searchText') || ''
       if (searchText) {
@@ -37,8 +37,12 @@ function SearchForm({byAllFilms, onSearchClick}) {
   function handleIsShortClick(e) {
     e.preventDefault()
     
-    setIsShort(!isShort)
-    onSearchClick(values.searchText, false)
+    const changedIsShort = !isShort;
+    setIsShort(changedIsShort)
+    if (byAllFilms) {
+      setStorageFilterData(changedIsShort, values.searchText)
+    }
+    onSearchClick(values.searchText, changedIsShort)
   }
 
   return (

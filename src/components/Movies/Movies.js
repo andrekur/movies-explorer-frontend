@@ -25,7 +25,7 @@ function Movies({onSaveMovieClick, savedMovies}) {
   }
 
   function getStorageFilterData(){
-    const isShort = localStorage.getItem('isShort') || true
+    const isShort = Boolean(localStorage.getItem('isShort') === 'true');
     const searchText = localStorage.getItem('searchText') || ''
 
     return {searchText, isShort}
