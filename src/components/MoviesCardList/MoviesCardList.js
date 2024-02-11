@@ -1,10 +1,12 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
 
 function MoviesCardList({page, cards, onSaveMovieClick, onDeleteMovieClick}) {
-  console.log('terst', cards, cards.length === 0 && <a>Ничего не найдено</a>)
+
+  const nothingText = `${page === 'all-movies' ? 'Ничего не найдено' : 'Ничего не добавлено'}`
+
   return (
     <ul className="moviescardlist">
-      {cards.length === 0 && <a>Ничего не найдено</a>}
+      {cards.length === 0 && <span className="moviescardlist__nothing-text">{nothingText}</span>}
       {cards && cards.map((card) => {
         return (
           <MoviesCard

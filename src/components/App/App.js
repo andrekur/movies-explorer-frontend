@@ -92,7 +92,7 @@ function App() {
     const moviesInStorage = JSON.parse(localStorage.getItem('movies'));
     if (moviesInStorage) {
       const _movie = moviesInStorage.filter(movie => movie.id === savedMovie.movieId)[0]
-      console.log(_movie, savedMovie)
+
       _deleteSavedFilm(_movie, savedMovie)
     }
     else {
@@ -117,7 +117,7 @@ function App() {
     const savedMovie = savedMovies.filter(savedMovie => savedMovie.movieId === movie.id)
 
     if (savedMovie.length >= 1) {
-      console.log(movie, savedMovie[0])
+
       _deleteSavedFilm(movie, savedMovie[0])
     }
     else {

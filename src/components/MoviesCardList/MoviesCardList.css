@@ -10,6 +10,12 @@
   background-color: #FAFAFA;
 }
 
+.moviescardlist__nothing-text {
+  width: 100%;
+  text-align: center;
+  grid-column: span 3;
+}
+
 @media screen and (max-width: 1200px) {
   .moviescardlist {
     grid-template-columns: repeat(3, 270px);

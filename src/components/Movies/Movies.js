@@ -36,6 +36,7 @@ function Movies({onSaveMovieClick, savedMovies}) {
   }
 
   useEffect(() => {
+
     const moviesInStorage = JSON.parse(localStorage.getItem('movies'));
     if (movies.length === 0 && moviesInStorage && !wasUploaded) {
       loadMoviesFromStorage(moviesInStorage)
