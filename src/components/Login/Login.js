@@ -24,7 +24,6 @@ function Login({onSubmit}) {
 
   function handleApiError(err) {
     setErrText(err);
-    console.log(22, err)
   }
 
   function handleSubmit(e) {

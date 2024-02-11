@@ -18,7 +18,6 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
-import ErrorNotification from "../ErrorNotification/ErrorNotification";
 
 
 function App() {
@@ -27,7 +26,6 @@ function App() {
   const [api, setApi] = useState(null);
   const [inProgress, setInProgress] = useState(false);
   const [curentUser, setCurentUser] = useState(null);
-  const [errText, setErrText] = useState('');
 
   const navigate = useNavigate();
 
@@ -47,15 +45,15 @@ function App() {
     setInProgress(false);
   }
 
-  function handleRegisterFormSubmit(values) {
+  function handleRegisterFormSubmit(values, successCallBack, errCallBack) {
     setInProgress(true);
     authApi.register(values)
       .then(() => {
         navigate("/signin", {replace: true});
+        successCallBack()
       })
       .catch((err) => {
-        setErrText(DefaultApiErrText)
-        console.error(err)
+        errCallBack(DefaultApiErrText)
       })
     setInProgress(false);
   }
@@ -85,7 +83,6 @@ function App() {
           setApi(_api)
         })
         .catch((err) => {
-          setErrText(DefaultApiErrText)
           console.error(err)
         })
     };
@@ -112,7 +109,6 @@ function App() {
         localStorage.setItem('movies', JSON.stringify(moviesInStorage.map((c) => c.id === movie.id ? movie : c)));
       })
       .catch((err) => {
-        setErrText(DefaultApiErrText)
         console.error(err)
       })
   }
@@ -143,7 +139,6 @@ function App() {
         setSavedMovies(savedMovies.concat(result))
       })
       .catch((err) => {
-        setErrText(DefaultApiErrText)
         console.error(err)
       })
     }
@@ -162,7 +157,6 @@ function App() {
             <Route path="/signin" element={<Login onSubmit={handleLoginFormSubmit}/>}></Route>
             <Route path="/signup" element={<Register onSubmit={handleRegisterFormSubmit}/>}></Route>
           </Routes>
-          {errText && <ErrorNotification text={errText}></ErrorNotification>}
         </main>
         <Footer/>
     </div>
