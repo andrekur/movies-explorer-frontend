@@ -154,6 +154,8 @@ function App() {
       .then(result => {
         movie.isSaved = true;
         setSavedMovies(savedMovies.concat(result))
+        const moviesInStorage = JSON.parse(localStorage.getItem('movies'));
+        localStorage.setItem('movies', JSON.stringify(moviesInStorage.map((c) => c.id === movie.id ? movie : c)));
       })
       .catch((err) => {
         console.error(err)
