@@ -4,7 +4,7 @@ import { Navigate, Route, Routes,  useNavigate } from "react-router-dom"
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 
-import { mainApiOptions, moviesApiOptions } from '../../consts/consts'
+import { mainApiOptions, moviesApiOptions, DefaultApiErrText } from '../../consts/consts'
 import authApi from "../../utils/AuthApi";
 import MainApi from "../../utils/MainApi";
 
@@ -18,6 +18,7 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
+import ErrorNotification from "../ErrorNotification/ErrorNotification";
 
 
 function App() {
@@ -26,19 +27,23 @@ function App() {
   const [api, setApi] = useState(null);
   const [inProgress, setInProgress] = useState(false);
   const [curentUser, setCurentUser] = useState(null);
+  const [errText, setErrText] = useState('');
 
   const navigate = useNavigate();
 
 
-  function handleLoginFormSubmit(values) {
+  function handleLoginFormSubmit(values, successCallBack, errCallBack) {
     setInProgress(true);
     authApi.authorize(values)
       .then((data) => {
         setLoggedIn(true);
         localStorage.setItem('jwt', data.token);
-        navigate("/", {replace: true});
+        navigate('/movies', {replace: true});
+        successCallBack()
       })
-      .catch(console.error)
+      .catch((err) => {
+        errCallBack(DefaultApiErrText)
+      })
     setInProgress(false);
   }
 
@@ -48,7 +53,10 @@ function App() {
       .then(() => {
         navigate("/signin", {replace: true});
       })
-      .catch(console.error)
+      .catch((err) => {
+        setErrText(DefaultApiErrText)
+        console.error(err)
+      })
     setInProgress(false);
   }
 
@@ -76,7 +84,10 @@ function App() {
             })
           setApi(_api)
         })
-        .catch(console.error)
+        .catch((err) => {
+          setErrText(DefaultApiErrText)
+          console.error(err)
+        })
     };
   }, [loggedIn])
 
@@ -100,7 +111,10 @@ function App() {
         setSavedMovies((state) => state.filter((c) => c._id !== savedMovie._id))
         localStorage.setItem('movies', JSON.stringify(moviesInStorage.map((c) => c.id === movie.id ? movie : c)));
       })
-      .catch(console.error)
+      .catch((err) => {
+        setErrText(DefaultApiErrText)
+        console.error(err)
+      })
   }
 
   function handleSaveMovieClick(movie) {
@@ -128,13 +142,16 @@ function App() {
         movie.isSaved = true;
         setSavedMovies(savedMovies.concat(result))
       })
-      .catch(console.error)
+      .catch((err) => {
+        setErrText(DefaultApiErrText)
+        console.error(err)
+      })
     }
   }
 
   return (
     <div className="page">
-        <Header loggedIn={true}/>
+        <Header loggedIn={loggedIn}/>
         <main>
           <Routes>
             <Route path="*" element={<NotFoundPage/>}></Route>
@@ -145,6 +162,7 @@ function App() {
             <Route path="/signin" element={<Login onSubmit={handleLoginFormSubmit}/>}></Route>
             <Route path="/signup" element={<Register onSubmit={handleRegisterFormSubmit}/>}></Route>
           </Routes>
+          {errText && <ErrorNotification text={errText}></ErrorNotification>}
         </main>
         <Footer/>
     </div>

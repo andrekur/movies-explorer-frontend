@@ -72,6 +72,10 @@
   color: #FFFFFF;
 }
 
+.header__sign-btn:hover {
+  opacity: .7;
+}
+
 .header__signup-btn {
   padding: 0;
   border: 0;
@@ -81,6 +85,10 @@
   line-height: 16px;
   letter-spacing: 0px;
   text-align: center;
+}
+
+.header__signup-btn:hover {
+  opacity: .7;
 }
 
 .header__profile-link {

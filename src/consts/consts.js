@@ -8,6 +8,8 @@ export const paginationMoviesSettings = {
   little: 1*5
 }
 
+export const DefaultApiErrText = 'Что-то пошло не так'
+
 export const mainApiOptions = {
   url: process.env.REACT_APP_API_SERVER || "http://localhost:3000",
   headers: {
