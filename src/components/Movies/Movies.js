@@ -10,7 +10,9 @@ import moviesApi from "../../utils/MoviesApi";
 
 import { getCountItemOnPage } from "../../utils/pagination";
 
+
 function Movies({onSaveMovieClick, savedMovies}) {
+  const [inProgres, setInProgres] = useState(false);
   const [nowOnPage, setOnPage] = useState(getCountItemOnPage());
   const [movies, setMovies] = useState([]);
   const [wasUploaded, setWasUploaded] = useState(false);
@@ -36,15 +38,17 @@ function Movies({onSaveMovieClick, savedMovies}) {
   }
 
   useEffect(() => {
-
+    setInProgres(true);
     const moviesInStorage = JSON.parse(localStorage.getItem('movies'));
     if (movies.length === 0 && moviesInStorage && !wasUploaded) {
       loadMoviesFromStorage(moviesInStorage)
       setSearchWasUsed(true)
     }
+    setInProgres(false);
   }, [movies, nowOnPage])
 
   function onSearchClick(searchText, isShort) {
+    setInProgres(true);
     const moviesInStorage = JSON.parse(localStorage.getItem('movies'));
 
     if (moviesInStorage) {
@@ -61,12 +65,13 @@ function Movies({onSaveMovieClick, savedMovies}) {
         setMovies(filteredMovies);
       })
     setSearchWasUsed(true);
+    setInProgres(false);
   }
 
   return (
     <section className="movies">
       <SearchForm byAllFilms={true} onSearchClick={onSearchClick}/>
-      {searchWasUsed && <MoviesCardList page='all-movies' cards={movies.slice(0, nowOnPage)} onSaveMovieClick={onSaveMovieClick}/>}
+      {searchWasUsed && <MoviesCardList page='all-movies' cards={movies.slice(0, nowOnPage)} onSaveMovieClick={onSaveMovieClick} inProgres={inProgres}/>}
       {!(movies && (movies.length === nowOnPage || movies.length <= nowOnPage)) &&
         <button className="movies__pagination" type="button" onClick={handleExtendCards}>Еще</button>
       }

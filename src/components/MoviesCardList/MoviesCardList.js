@@ -1,10 +1,16 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
+import Preloader from "../../components/Preloader/Preloader"
 
-function MoviesCardList({page, cards, onSaveMovieClick, onDeleteMovieClick}) {
+function MoviesCardList({page, cards, onSaveMovieClick, onDeleteMovieClick, inProgres}) {
 
   const nothingText = `${page === 'all-movies' ? 'Ничего не найдено' : 'Ничего не добавлено'}`
 
-  return (
+  if (inProgres) {
+    return (
+      <Preloader></Preloader>
+    )
+  }
+  else return (
     <ul className="moviescardlist">
       {cards.length === 0 && <span className="moviescardlist__nothing-text">{nothingText}</span>}
       {cards && cards.map((card) => {

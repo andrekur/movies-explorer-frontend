@@ -24,14 +24,14 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
   const [api, setApi] = useState(null);
-  const [inProgress, setInProgress] = useState(false);
+  const [inProgres, setInProgres] = useState(false);
   const [curentUser, setCurentUser] = useState(null);
 
   const navigate = useNavigate();
 
 
   function handleLoginFormSubmit(values, successCallBack, errCallBack) {
-    setInProgress(true);
+    setInProgres(true);
     authApi.authorize(values)
       .then((data) => {
         setLoggedIn(true);
@@ -42,11 +42,11 @@ function App() {
       .catch((err) => {
         errCallBack(DefaultApiErrText)
       })
-    setInProgress(false);
+    setInProgres(false);
   }
 
   function handleRegisterFormSubmit(values, successCallBack, errCallBack) {
-    setInProgress(true);
+    setInProgres(true);
     authApi.register(values)
       .then(() => {
         navigate("/signin", {replace: true});
@@ -55,7 +55,7 @@ function App() {
       .catch((err) => {
         errCallBack(DefaultApiErrText)
       })
-    setInProgress(false);
+    setInProgres(false);
   }
 
   function handleLogout(e) {
@@ -65,7 +65,7 @@ function App() {
   }
 
   function handleEditProfile(values, successCallBack, errCallBack) {
-
+    setInProgres(true);
     api.editUserProfile(values)
       .then((data) => {
         setCurentUser(data)
@@ -74,10 +74,13 @@ function App() {
       .catch((err) => {
         errCallBack(DefaultApiErrText)
       })
+    setInProgres(false);
   }
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
+
+    setInProgres(true);
     if (jwt){
       authApi.checkToken(jwt)
         .then((data) => {
@@ -87,6 +90,7 @@ function App() {
         })
         .then((data) => {
           const _api = new MainApi(mainApiOptions, jwt)
+          
           _api.getAllSavedMovies()
             .then((_savedMovies) => {
               setSavedMovies(_savedMovies);
@@ -98,6 +102,7 @@ function App() {
           console.error(err)
         })
     };
+    setInProgres(false);
   }, [loggedIn])
 
   function handleDeleteSavedFilm(savedMovie) {
@@ -165,7 +170,7 @@ function App() {
             <Route path="*" element={<NotFoundPage/>}></Route>
             <Route path="/" element={<Main/>}></Route>
             <Route path="/movies" element={<ProtectedRouteElement element={Movies} savedMovies={savedMovies} loggedIn={loggedIn} onSaveMovieClick={handleSaveMovieClick}/>}></Route>
-            <Route path="/saved-movies" element={<ProtectedRouteElement element={SavedMovies} loggedIn={loggedIn} savedMovies={savedMovies} onDeleteMovieClick={handleDeleteSavedFilm}/>}></Route>
+            <Route path="/saved-movies" element={<ProtectedRouteElement element={SavedMovies} inProgres={inProgres} loggedIn={loggedIn} savedMovies={savedMovies} onDeleteMovieClick={handleDeleteSavedFilm}/>}></Route>
             <Route path="/profile" element={<ProtectedRouteElement element={Profile} loggedIn={loggedIn} onSubmit={handleEditProfile} logout={handleLogout}/>}></Route>
             <Route path="/signin" element={<Login onSubmit={handleLoginFormSubmit}/>}></Route>
             <Route path="/signup" element={<Register onSubmit={handleRegisterFormSubmit}/>}></Route>
