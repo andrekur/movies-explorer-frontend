@@ -17,13 +17,6 @@ export const mainApiOptions = {
   }
 }
 
-export const authApiOptions = {
-  url: process.env.REACT_APP_API_SERVER || "http://localhost:3000",
-  headers: {
-    'Content-Type': 'application/json',
-  }
-}
-
 export const moviesApiOptions = {
   url: 'https://api.nomoreparties.co',
   headers: {

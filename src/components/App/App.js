@@ -4,9 +4,8 @@ import { Navigate, Route, Routes,  useNavigate } from "react-router-dom"
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 
-import { mainApiOptions, moviesApiOptions, DefaultApiErrText } from '../../consts/consts'
-import authApi from "../../utils/AuthApi";
-import MainApi from "../../utils/MainApi";
+import {moviesApiOptions, DefaultApiErrText } from '../../consts/consts'
+import mainApi from "../../utils/MainApi";
 
 import CurentUserContext from "../contexts/CurentUserContext"
 
@@ -23,7 +22,6 @@ import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
-  const [api, setApi] = useState(null);
   const [inProgres, setInProgres] = useState(false);
   const [curentUser, setCurentUser] = useState(null);
 
@@ -32,29 +30,29 @@ function App() {
 
   function handleLoginFormSubmit(values, successCallBack, errCallBack) {
     setInProgres(true);
-    authApi.authorize(values)
-      .then((data) => {
-        setLoggedIn(true);
-        localStorage.setItem('jwt', data.token);
-        navigate('/movies', {replace: true});
-        successCallBack()
-      })
-      .catch((err) => {
-        errCallBack(DefaultApiErrText)
-      })
+    // authApi.authorize(values)
+    //   .then((data) => {
+    //     setLoggedIn(true);
+    //     localStorage.setItem('jwt', data.token);
+    //     navigate('/movies', {replace: true});
+    //     successCallBack()
+    //   })
+    //   .catch((err) => {
+    //     errCallBack(DefaultApiErrText)
+    //   })
     setInProgres(false);
   }
 
   function handleRegisterFormSubmit(values, successCallBack, errCallBack) {
     setInProgres(true);
-    authApi.register(values)
-      .then(() => {
-        navigate("/signin", {replace: true});
-        successCallBack()
-      })
-      .catch((err) => {
-        errCallBack(DefaultApiErrText)
-      })
+    // authApi.register(values)
+    //   .then(() => {
+    //     navigate("/signin", {replace: true});
+    //     successCallBack()
+    //   })
+    //   .catch((err) => {
+    //     errCallBack(DefaultApiErrText)
+    //   })
     setInProgres(false);
   }
 
@@ -66,7 +64,7 @@ function App() {
 
   function handleEditProfile(values, successCallBack, errCallBack) {
     setInProgres(true);
-    api.editUserProfile(values)
+    mainApi.editUserProfile(values)
       .then((data) => {
         setCurentUser(data)
         successCallBack()
@@ -78,30 +76,28 @@ function App() {
   }
 
   useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
-
     setInProgres(true);
-    if (jwt){
-      authApi.checkToken(jwt)
+    if (mainApi.isTokenLocal()) {
+      mainApi.checkApiToken()
         .then((data) => {
           setLoggedIn(true);
-          navigate("/movies", {replace: true});
+          navigate('/movies', {replace: true});
           return data
         })
         .then((data) => {
-          const _api = new MainApi(mainApiOptions, jwt)
-          
-          _api.getAllSavedMovies()
+          mainApi.getAllSavedMovies()
             .then((_savedMovies) => {
               setSavedMovies(_savedMovies);
               setCurentUser(data);
             })
-          setApi(_api)
+            .catch((err) => {
+              console.log(err)
+            })
         })
         .catch((err) => {
-          console.error(err)
+          console.log(err)
         })
-    };
+    }
     setInProgres(false);
   }, [loggedIn])
 
@@ -118,7 +114,7 @@ function App() {
   }
 
   function _deleteSavedFilm(movie, savedMovie) {
-    api.deleteMovie(savedMovie._id)
+    mainApi.deleteMovie(savedMovie._id)
       .then(() => {
         movie.isSaved = false;
         const moviesInStorage = JSON.parse(localStorage.getItem('movies'));
@@ -138,7 +134,7 @@ function App() {
       _deleteSavedFilm(movie, savedMovie[0])
     }
     else {
-      api.createMovie({
+      mainApi.createMovie({
         country: movie.country,
         director: movie.director,
         duration: movie.duration,
