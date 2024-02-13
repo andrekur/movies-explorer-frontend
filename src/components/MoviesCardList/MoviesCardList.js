@@ -11,8 +11,8 @@ function MoviesCardList({page, cards, onSaveMovieClick, onDeleteMovieClick, inPr
     )
   }
   else return (
-    <ul className="moviescardlist">
-      {cards.length === 0 && <span className="moviescardlist__nothing-text">{nothingText}</span>}
+    <ul className="movies-list">
+      {cards.length === 0 && <span className="movies-list__nothing-text">{nothingText}</span>}
       {cards && cards.map((card) => {
         return (
           <MoviesCard
