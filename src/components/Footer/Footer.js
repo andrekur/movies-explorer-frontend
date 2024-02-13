@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from 'react-router-dom';
 
-import { isFooterActivePath} from '../../consts/consts'
+import { isFooterActivePath} from '../../constants/constants'
 
 function Footer() {
 

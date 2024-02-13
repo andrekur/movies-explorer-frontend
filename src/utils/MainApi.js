@@ -1,4 +1,4 @@
-import { mainApiOptions } from '../consts/consts'
+import { mainApiOptions } from '../constants/constants'
 
 
 class MainApi{

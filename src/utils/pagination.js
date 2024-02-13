@@ -1,4 +1,4 @@
-import { paginationMoviesSettings} from '../consts/consts'
+import { paginationMoviesSettings} from '../constants/constants'
 
 
 export function getCountItemOnPage() {

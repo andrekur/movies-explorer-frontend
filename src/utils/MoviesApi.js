@@ -1,4 +1,4 @@
-import { moviesApiOptions } from '../consts/consts'
+import { moviesApiOptions } from '../constants/constants'
 
 
 class MoviesApi{

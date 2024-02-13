@@ -3,7 +3,7 @@ import { NavLink, useLocation} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 import { useMenuClose } from '../../hooks/menuOverlayClick';
-import { isHeadActivePath} from '../../consts/consts'
+import { isHeadActivePath} from '../../constants/constants'
 import Logo from '../Logo/Logo'
 
 

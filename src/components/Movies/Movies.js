@@ -4,7 +4,7 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
 
 
-import { moviesApiOptions } from '../../consts/consts'
+import { moviesApiOptions } from '../../constants/constants'
 import { filterMovies } from "../../utils/filter";
 import moviesApi from "../../utils/MoviesApi";
 

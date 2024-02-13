@@ -4,7 +4,7 @@ import { Navigate, Route, Routes,  useNavigate } from "react-router-dom"
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 
-import {moviesApiOptions, DefaultApiErrText } from '../../consts/consts'
+import {moviesApiOptions, DefaultApiErrText } from '../../constants/constants'
 import mainApi from "../../utils/MainApi";
 
 import CurrentUserContext from "../../contexts/CurrentUserContext"
