@@ -7,7 +7,7 @@ import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
 function SearchForm({byAllFilms, onSearchClick}) {
   const [isShort, setIsShort] = useState(true);
-  const {values, handleChange, errors, isValid, setValues, resetForm} = useFormAndValidation();
+  const {values, handleChange, isValid, setIsValid, setValues} = useFormAndValidation();
 
   useEffect(() => {
     if (byAllFilms) {
@@ -16,6 +16,7 @@ function SearchForm({byAllFilms, onSearchClick}) {
       const searchText = localStorage.getItem('searchText') || ''
       if (searchText) {
         setValues({searchText})
+        setIsValid(true)
       }
     }
   }, [setValues]);
