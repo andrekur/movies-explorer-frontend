@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { Navigate, Route, Routes,  useNavigate } from "react-router-dom"
+import { useLocation, Route, Routes,  useNavigate } from "react-router-dom"
 
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 
-import {moviesApiOptions, DefaultApiErrText } from '../../constants/constants'
+import {moviesApiOptions, defaultApiErrorText, authorizationPaths} from '../../constants/constants'
 import mainApi from "../../utils/MainApi";
 
 import CurrentUserContext from "../../contexts/CurrentUserContext"
@@ -26,6 +26,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
   const navigate = useNavigate();
+  const { pathname } = useLocation()
 
 
   function handleLoginFormSubmit(values, successCallBack, errCallBack) {
@@ -38,7 +39,7 @@ function App() {
     //     successCallBack()
     //   })
     //   .catch((err) => {
-    //     errCallBack(DefaultApiErrText)
+    //     errCallBack(defaultApiErrorText)
     //   })
     setInProgress(false);
   }
@@ -51,7 +52,7 @@ function App() {
     //     successCallBack()
     //   })
     //   .catch((err) => {
-    //     errCallBack(DefaultApiErrText)
+    //     errCallBack(defaultApiErrorText)
     //   })
     setInProgress(false);
   }
@@ -70,7 +71,7 @@ function App() {
         successCallBack()
       })
       .catch((err) => {
-        errCallBack(DefaultApiErrText)
+        errCallBack(defaultApiErrorText)
       })
     setInProgress(false);
   }
@@ -80,8 +81,9 @@ function App() {
     if (mainApi.isTokenLocal()) {
       mainApi.checkApiToken()
         .then((data) => {
+          const pathToRedirect = authorizationPaths.includes(pathname) ? '/' : pathname
+          navigate(pathToRedirect, {replace: true});
           setLoggedIn(true);
-          navigate('/movies', {replace: true});
           return data
         })
         .then((data) => {

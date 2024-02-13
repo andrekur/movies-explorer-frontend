@@ -38,7 +38,7 @@ function Profile({onSubmit, logout}) {
     if (currentUser) {
       setValues({'name': currentUser.name, 'email': currentUser.email})
     }
-  }, [setValues]);
+  }, [setValues, currentUser]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -55,7 +55,7 @@ function Profile({onSubmit, logout}) {
 
   return (
     <section className="profile">
-      <h1 className="profile__title">{`Привет, ${currentUser.name}!`}</h1>
+      <h1 className="profile__title">{`Привет, ${currentUser ? currentUser.name : ''}!`}</h1>
       <form className="profile__form" onSubmit={handleSubmit}>
         <div className="profile__input-block">
           <span className="profile__input-helper">Имя</span>

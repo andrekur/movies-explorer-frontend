@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useLocation} from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 import { useMenuClose } from '../../hooks/menuOverlayClick';
-import { isHeadActivePath} from '../../constants/constants'
+import { isHeadActivePaths } from '../../constants/constants'
 import Logo from '../Logo/Logo'
 
 
@@ -14,7 +14,7 @@ function Header({loggedIn}) {
   const navigate = useNavigate();
 
   const isMainPage = pathname === '/';
-  const isHeaderActive = isHeadActivePath.includes(pathname)
+  const isHeaderActive = isHeadActivePaths.includes(pathname)
 
   useEffect(() => {
     document.body.style.position = `${mobileMenuOpen ? 'fixed' : ''}`;

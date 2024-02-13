@@ -1,5 +1,5 @@
-export const isHeadActivePath = ['/', '/movies', '/saved-movies', '/profile']
-export const isFooterActivePath = ['/', '/movies', '/saved-movies']
+export const isHeadActivePaths = ['/', '/movies', '/saved-movies', '/profile']
+export const isFooterActivePaths = ['/', '/movies', '/saved-movies']
 export const paginationMoviesSettings = {
   // col*row
   more: 4*4,
@@ -8,7 +8,9 @@ export const paginationMoviesSettings = {
   little: 1*5
 }
 
-export const DefaultApiErrText = 'Что-то пошло не так'
+export const authorizationPaths = ['/signin', '/signup']
+
+export const defaultApiErrorText = 'Что-то пошло не так'
 
 export const mainApiOptions = {
   url: process.env.REACT_APP_API_SERVER || "http://localhost:3000",

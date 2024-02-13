@@ -17,7 +17,6 @@ class MainApi{
   _sendRequest(url, options) {
     return fetch(url, options)
       .then((response) => {
-        console.log(this._headers)
         if (response.ok) {
          return response.json()
         };
