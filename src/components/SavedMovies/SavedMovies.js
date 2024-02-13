@@ -5,7 +5,7 @@ import SearchForm from "../SearchForm/SearchForm";
 
 import { filterMovies } from "../../utils/filter";
 
-function SavedMovies({savedMovies, onDeleteMovieClick, inProgres}) {
+function SavedMovies({savedMovies, onDeleteMovieClick, inProgress}) {
   const [filteredMovies, setFilteredMovies] = useState([]);
 
   function onSearchClick(searchText, isShort) {
@@ -18,7 +18,7 @@ function SavedMovies({savedMovies, onDeleteMovieClick, inProgres}) {
   return (
     <section className="saved-movies">
       <SearchForm byAllFilms={false} onSearchClick={onSearchClick}/>
-      <MoviesCardList page='saved-movies' cards={filteredMovies} onDeleteMovieClick={onDeleteMovieClick} inProgres={inProgres}/>
+      <MoviesCardList page='saved-movies' cards={filteredMovies} onDeleteMovieClick={onDeleteMovieClick} inProgress={inProgress}/>
     </section>
   )
 };

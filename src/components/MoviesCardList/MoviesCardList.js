@@ -1,11 +1,11 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Preloader from "../../components/Preloader/Preloader"
 
-function MoviesCardList({page, cards, onSaveMovieClick, onDeleteMovieClick, inProgres}) {
+function MoviesCardList({page, cards, onSaveMovieClick, onDeleteMovieClick, inProgress}) {
 
   const nothingText = `${page === 'all-movies' ? 'Ничего не найдено' : 'Ничего не добавлено'}`
 
-  if (inProgres) {
+  if (inProgress) {
     return (
       <Preloader></Preloader>
     )
