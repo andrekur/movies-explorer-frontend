@@ -7,7 +7,7 @@ import Header from "../Header/Header";
 import {moviesApiOptions, DefaultApiErrText } from '../../consts/consts'
 import mainApi from "../../utils/MainApi";
 
-import CurentUserContext from "../contexts/CurentUserContext"
+import CurrentUserContext from "../contexts/CurrentUserContext"
 
 import Main from "../Main/Main"
 import Movies from "../Movies/Movies";
@@ -23,7 +23,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
   const [inProgres, setInProgres] = useState(false);
-  const [curentUser, setCurentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
 
   const navigate = useNavigate();
 
@@ -58,7 +58,7 @@ function App() {
 
   function handleLogout(e) {
     localStorage.clear();
-    setCurentUser(null);
+    setCurrentUser(null);
     setLoggedIn(false);
   }
 
@@ -66,7 +66,7 @@ function App() {
     setInProgres(true);
     mainApi.editUserProfile(values)
       .then((data) => {
-        setCurentUser(data)
+        setCurrentUser(data)
         successCallBack()
       })
       .catch((err) => {
@@ -88,7 +88,7 @@ function App() {
           mainApi.getAllSavedMovies()
             .then((_savedMovies) => {
               setSavedMovies(_savedMovies);
-              setCurentUser(data);
+              setCurrentUser(data);
             })
             .catch((err) => {
               console.log(err)
@@ -161,7 +161,7 @@ function App() {
 
   return (
     <div className="page">
-      <CurentUserContext.Provider value={curentUser}>
+      <CurrentUserContext.Provider value={currentUser}>
         <Header loggedIn={loggedIn}/>
         <main>
           <Routes>
@@ -175,7 +175,7 @@ function App() {
           </Routes>
         </main>
         <Footer/>
-      </CurentUserContext.Provider>
+      </CurrentUserContext.Provider>
     </div>
   );
 }

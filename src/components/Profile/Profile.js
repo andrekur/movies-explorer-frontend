@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState} from "react";
-import CurentUserContext from "../contexts/CurentUserContext";
+import CurrentUserContext from "../contexts/CurrentUserContext";
 
 
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
@@ -10,7 +10,7 @@ function Profile({onSubmit, logout}) {
   const {values, handleChange, errors, isValid, setValues, resetForm} = useFormAndValidation();
   const [errText, setErrText] = useState('');
   const [inputWasChanged, setInputWasChanged] = useState(false);
-  const curentUser = useContext(CurentUserContext);
+  const currentUser = useContext(CurrentUserContext);
   const navigate = useNavigate();
 
   function _handleChange(e) {
@@ -18,7 +18,7 @@ function Profile({onSubmit, logout}) {
 
     handleChange(e)
     setErrText('');
-    if (curentUser.name !== e.target.value && curentUser.email !== e.target.value) {
+    if (currentUser.name !== e.target.value && currentUser.email !== e.target.value) {
       setInputWasChanged(true);
     }
     else {
@@ -35,8 +35,8 @@ function Profile({onSubmit, logout}) {
   }
 
   useEffect(() => {
-    if (curentUser) {
-      setValues({'name': curentUser.name, 'email': curentUser.email})
+    if (currentUser) {
+      setValues({'name': currentUser.name, 'email': currentUser.email})
     }
   }, [setValues]);
 
@@ -55,7 +55,7 @@ function Profile({onSubmit, logout}) {
 
   return (
     <section className="profile">
-      <h1 className="profile__title">{`Привет, ${curentUser.name}!`}</h1>
+      <h1 className="profile__title">{`Привет, ${currentUser.name}!`}</h1>
       <form className="profile__form" onSubmit={handleSubmit}>
         <div className="profile__input-block">
           <span className="profile__input-helper">Имя</span>
