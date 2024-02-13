@@ -7,7 +7,7 @@ import Header from "../Header/Header";
 import {moviesApiOptions, DefaultApiErrText } from '../../consts/consts'
 import mainApi from "../../utils/MainApi";
 
-import CurrentUserContext from "../contexts/CurrentUserContext"
+import CurrentUserContext from "../../contexts/CurrentUserContext"
 
 import Main from "../Main/Main"
 import Movies from "../Movies/Movies";
