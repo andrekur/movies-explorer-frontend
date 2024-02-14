@@ -34,8 +34,7 @@ function App() {
       .then((data) => {
         localStorage.setItem('jwt', data.token)
         mainApi.updateApiToken(data.token)
-        authorizeUser()
-        navigate('/movies', {replace: true});
+        authorizeUser('/movies')
         successCallBack()
       })
       .catch((err) => {
@@ -43,11 +42,16 @@ function App() {
       })
   }
 
-  function authorizeUser() {
+  function authorizeUser(successPathToRedirect=undefined) {
     return mainApi.checkApiToken()
       .then((data) => {
-        const pathToRedirect = authorizationPaths.includes(pathname) ? '/' : pathname
-        navigate(pathToRedirect, {replace: true});
+        if (successPathToRedirect) {
+          navigate('/movies', {replace: true});
+        }
+        else {
+          const pathToRedirect = authorizationPaths.includes(pathname) ? '/' : pathname
+          navigate(pathToRedirect, {replace: true});
+        }
         setLoggedIn(true);
         return data
       })
