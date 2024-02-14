@@ -29,38 +29,68 @@ function App() {
   const { pathname } = useLocation()
 
 
+  function loginUser(values, successCallBack, errCallBack) {
+    return mainApi.authorize(values)
+      .then((data) => {
+        localStorage.setItem('jwt', data.token)
+        mainApi.updateApiToken(data.token)
+        authorizeUser()
+        navigate('/movies', {replace: true});
+        successCallBack()
+      })
+      .catch((err) => {
+        errCallBack(defaultApiErrorText)
+      })
+  }
+
+  function authorizeUser() {
+    return mainApi.checkApiToken()
+      .then((data) => {
+        const pathToRedirect = authorizationPaths.includes(pathname) ? '/' : pathname
+        navigate(pathToRedirect, {replace: true});
+        setLoggedIn(true);
+        return data
+      })
+      .then((data) => {
+        mainApi.getAllSavedMovies()
+          .then((_savedMovies) => {
+            setSavedMovies(_savedMovies);
+            setCurrentUser(data);
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   function handleLoginFormSubmit(values, successCallBack, errCallBack) {
     setInProgress(true);
-    // authApi.authorize(values)
-    //   .then((data) => {
-    //     setLoggedIn(true);
-    //     localStorage.setItem('jwt', data.token);
-    //     navigate('/movies', {replace: true});
-    //     successCallBack()
-    //   })
-    //   .catch((err) => {
-    //     errCallBack(defaultApiErrorText)
-    //   })
+    loginUser(values, successCallBack, errCallBack)
     setInProgress(false);
   }
 
   function handleRegisterFormSubmit(values, successCallBack, errCallBack) {
     setInProgress(true);
-    // authApi.register(values)
-    //   .then(() => {
-    //     navigate("/signin", {replace: true});
-    //     successCallBack()
-    //   })
-    //   .catch((err) => {
-    //     errCallBack(defaultApiErrorText)
-    //   })
+    mainApi.register(values)
+      .then(() => {
+        loginUser(values, () => {}, () => {})
+        successCallBack()
+      })
+      .catch((err) => {
+        errCallBack(defaultApiErrorText)
+      })
     setInProgress(false);
   }
 
   function handleLogout(e) {
     localStorage.clear();
+    mainApi.resetApiToken()
     setCurrentUser(null);
     setLoggedIn(false);
+    navigate("/", {replace: true});
   }
 
   function handleEditProfile(values, successCallBack, errCallBack) {
@@ -77,28 +107,11 @@ function App() {
   }
 
   useEffect(() => {
+    console.log('upd', loggedIn)
     setInProgress(true);
     if (mainApi.isTokenLocal()) {
-      mainApi.checkApiToken()
-        .then((data) => {
-          const pathToRedirect = authorizationPaths.includes(pathname) ? '/' : pathname
-          navigate(pathToRedirect, {replace: true});
-          setLoggedIn(true);
-          return data
-        })
-        .then((data) => {
-          mainApi.getAllSavedMovies()
-            .then((_savedMovies) => {
-              setSavedMovies(_savedMovies);
-              setCurrentUser(data);
-            })
-            .catch((err) => {
-              console.log(err)
-            })
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      console.log('что ?')
+      authorizeUser();
     }
     setInProgress(false);
   }, [loggedIn])

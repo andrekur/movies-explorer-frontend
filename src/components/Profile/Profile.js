@@ -50,7 +50,6 @@ function Profile({onSubmit, logout}) {
     e.preventDefault();
 
     logout();
-    navigate('/signin', { replace: true });
   }
 
   return (

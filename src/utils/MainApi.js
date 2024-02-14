@@ -29,6 +29,10 @@ class MainApi{
     this._headers = {...this._headers, authorization: `Bearer ${jwt}`}
   }
 
+  resetApiToken() {
+    delete this._headers.authorization
+  }
+
   checkApiToken() {
     return this._sendRequest(`${this._url}/users/me`, {
       method: 'GET',
