@@ -3,7 +3,7 @@ import React, { useEffect, useState} from "react";
 import Form from "../Form/Form";
 
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
-
+import { emailRegExp } from "../../constants/constants";
 
 function Login({onSubmit}) {
   const [errText, setErrText] = useState('');
@@ -36,7 +36,7 @@ function Login({onSubmit}) {
     <section className="login">
       <Form onSubmit={handleSubmit} title='Рады видеть!' submitButtonText='Войти' additionalText='Ещё не зарегистрированы?' additionalLinkText='Регистрация' additionlaLink='/signup' isValid={isValid}>
         <span className="form__input-helper">E-mail</span>
-        <input className="form__input form__input_field_email" id="email" value={values.email || ''} onChange={handleInputChanged} type="email" name="email" placeholder="email" required/>
+        <input className="form__input form__input_field_email" id="email" pattern={emailRegExp} value={values.email || ''} onChange={handleInputChanged} type="email" name="email" placeholder="email" required/>
         <span className="form__input-error">{errors.email || ''}</span>
         <span className="form__input-helper">Пароль</span>
         <input className="form__input form__input_field_password"  id="password" value={values.password || ''} onChange={handleInputChanged} type="password" name="password" minLength='8' placeholder="пароль" required/>

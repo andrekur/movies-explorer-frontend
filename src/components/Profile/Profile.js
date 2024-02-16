@@ -3,15 +3,13 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
-import { useNavigate } from 'react-router-dom';
-
+import { emailRegExp, userNameRegExp } from "../../constants/constants";
 
 function Profile({onSubmit, logout}) {
-  const {values, handleChange, errors, isValid, setValues, resetForm} = useFormAndValidation();
+  const {values, handleChange, errors, isValid, setValues} = useFormAndValidation();
   const [errText, setErrText] = useState('');
   const [inputWasChanged, setInputWasChanged] = useState(false);
   const currentUser = useContext(CurrentUserContext);
-  const navigate = useNavigate();
 
   function _handleChange(e) {
     e.preventDefault()
@@ -58,13 +56,13 @@ function Profile({onSubmit, logout}) {
       <form className="profile__form" onSubmit={handleSubmit}>
         <div className="profile__input-block">
           <span className="profile__input-helper">Имя</span>
-          <input className="profile__input profile__input_field_name" id="name" value={values.name || ''} onChange={_handleChange} type="text" name="name" placeholder="Имя" minLength="2" maxLength="40" required/>
+          <input className="profile__input profile__input_field_name" id="name" value={values.name || ''} onChange={_handleChange} pattern={userNameRegExp} type="text" name="name" placeholder="Имя" minLength="2" maxLength="40" required/>
         </div>
         <span className="profile__input-error">{errors.name || ''}</span>
         <span className="profile__line"></span>
         <div className="profile__input-block">
           <span className="profile__input-helper">E-mail</span>
-          <input className="profile__input profile__input_field_email"  id="email" value={values.email || ''} onChange={_handleChange} type="email" name="email" placeholder="email" required/>
+          <input className="profile__input profile__input_field_email"  id="email" value={values.email || ''} onChange={_handleChange} pattern={emailRegExp} type="email" name="email" placeholder="email" required/>
         </div>
         <span className="profile__input-error">{errors.email || ''}</span>
         <div className="profile__err-block">

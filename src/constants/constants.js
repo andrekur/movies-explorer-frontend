@@ -12,6 +12,9 @@ export const authorizationPaths = ['/signin', '/signup']
 
 export const defaultApiErrorText = 'Что-то пошло не так'
 
+export const userNameRegExp = '[a-zA-Zа-яА-ЯЁё\\-\\s]{2,30}'
+export const emailRegExp = '[a-zA-Z0-9\\._%+\\-]+@[a-zA-Z0-9\\.\\-]+\\.[a-zA-Z]{2,}'
+
 export const mainApiOptions = {
   url: process.env.REACT_APP_API_SERVER || "http://localhost:3000",
   headers: {
