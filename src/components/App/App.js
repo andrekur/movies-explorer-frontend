@@ -17,10 +17,14 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
+import Notification from "../Notification/Notification";
 
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [notificationText, setNotificationText] = useState('');
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
+  const [isNotificationSuccess, setIsNotificationSuccess] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
   const [inProgress, setInProgress] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
@@ -28,6 +32,13 @@ function App() {
   const navigate = useNavigate();
   const { pathname } = useLocation()
 
+
+  function notifyUser(text, isSuccess) {
+    setNotificationText(text);
+    setIsNotificationSuccess(isSuccess);
+    setIsNotificationOpen(true);
+    setTimeout(() => {setIsNotificationOpen(false)}, 5000)
+  }
 
   function loginUser(values, successCallBack, errCallBack) {
     return mainApi.authorize(values)
@@ -38,7 +49,7 @@ function App() {
         successCallBack()
       })
       .catch((err) => {
-        errCallBack(defaultApiErrorText)
+        err.status === 401 ? errCallBack('Вы ввели неправильный логин или пароль') : errCallBack('При авторизации произошла ошибка');
       })
   }
 
@@ -62,11 +73,11 @@ function App() {
             setCurrentUser(data);
           })
           .catch((err) => {
-            console.log(err)
+            notifyUser(defaultApiErrorText, false);
           })
       })
       .catch((err) => {
-        console.log(err)
+        notifyUser(defaultApiErrorText, false);
       })
   }
 
@@ -80,11 +91,15 @@ function App() {
     setInProgress(true);
     mainApi.register(values)
       .then(() => {
-        loginUser(values, () => {}, () => {})
+        loginUser(values, () => {}, notifyUser(defaultApiErrorText, false))
         successCallBack()
+        notifyUser('Вы успешно зарегистрировались!', true);
       })
       .catch((err) => {
-        errCallBack(defaultApiErrorText)
+        err.status === 400 ? errCallBack('Пользователь с таким email уже существует') : errCallBack('При регистрации пользователя произошла ошибка');
+        if (err.status === 500) {
+          notifyUser(defaultApiErrorText, false)
+        }
       })
     setInProgress(false);
   }
@@ -103,9 +118,13 @@ function App() {
       .then((data) => {
         setCurrentUser(data)
         successCallBack()
+        notifyUser('Данные успешно изменены!', true);
       })
       .catch((err) => {
-        errCallBack(defaultApiErrorText)
+        err.status === 400 ? errCallBack('Пользователь с таким email уже существует') : errCallBack('При обновлении профиля произошла ошибка.');
+        if (err.status === 500) {
+          notifyUser(defaultApiErrorText, false);
+        }
       })
     setInProgress(false);
   }
@@ -139,7 +158,7 @@ function App() {
         localStorage.setItem('movies', JSON.stringify(moviesInStorage.map((c) => c.id === movie.id ? movie : c)));
       })
       .catch((err) => {
-        console.error(err)
+        notifyUser(defaultApiErrorText, false);
       })
   }
 
@@ -171,7 +190,7 @@ function App() {
         localStorage.setItem('movies', JSON.stringify(moviesInStorage.map((c) => c.id === movie.id ? movie : c)));
       })
       .catch((err) => {
-        console.error(err)
+        notifyUser(defaultApiErrorText, false);
       })
     }
   }
@@ -190,6 +209,7 @@ function App() {
             <Route path="/signin" element={<Login onSubmit={handleLoginFormSubmit}/>}></Route>
             <Route path="/signup" element={<Register onSubmit={handleRegisterFormSubmit}/>}></Route>
           </Routes>
+          {isNotificationOpen && <Notification text={notificationText} isSuccess={isNotificationSuccess}></Notification>}
         </main>
         <Footer/>
       </CurrentUserContext.Provider>
