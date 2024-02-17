@@ -4,7 +4,6 @@ function Notification({text, isSuccess}) {
   const [isShow, setIsShow] = useState(true);
 
   useEffect(() => {
-    console.log(124)
     const timeoutId = setTimeout(() => {
       setIsShow(false);
     }, 5000);

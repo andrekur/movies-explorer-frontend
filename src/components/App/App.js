@@ -96,7 +96,7 @@ function App() {
         notifyUser('Вы успешно зарегистрировались!', true);
       })
       .catch((err) => {
-        err.status === 400 ? errCallBack('Пользователь с таким email уже существует') : errCallBack('При регистрации пользователя произошла ошибка');
+        err.status === 409 ? errCallBack('Пользователь с таким email уже существует') : errCallBack('При регистрации пользователя произошла ошибка');
         if (err.status === 500) {
           notifyUser(defaultApiErrorText, false)
         }
