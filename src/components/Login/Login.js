@@ -21,10 +21,12 @@ function Login({onSubmit}) {
 
   function handleApiSuccess() {
     resetForm();
+    setIsWaitingResponse(false);
   }
 
   function handleApiError(err) {
     setErrText(err);
+    setIsWaitingResponse(false);
   }
 
   function handleSubmit(e) {
@@ -32,7 +34,6 @@ function Login({onSubmit}) {
 
     setIsWaitingResponse(true);
     onSubmit(values, handleApiSuccess, handleApiError);
-    setIsWaitingResponse(false);
   }
 
   return (

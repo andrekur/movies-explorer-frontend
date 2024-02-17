@@ -27,10 +27,12 @@ function Profile({onSubmit, logout}) {
 
   function handleApiSuccess() {
     setInputWasChanged(false);
+    setIsWaitingResponse(false);
   }
 
   function handleApiError(err) {
     setErrText(err);
+    setIsWaitingResponse(false);
   }
 
   useEffect(() => {
@@ -44,7 +46,6 @@ function Profile({onSubmit, logout}) {
     e.preventDefault();
 
     onSubmit(values, handleApiSuccess, handleApiError);
-    setIsWaitingResponse(false);
   }
 
   function handleLogout(e) {
@@ -72,7 +73,7 @@ function Profile({onSubmit, logout}) {
           {errText &&<span className="profile__err-text">{errText}</span>}
         </div>
         {!inputWasChanged && <span className="profile__save">Редактировать</span>}
-        {inputWasChanged && <button className={`profile__save ${inputWasChanged && isValid && !isWaitingResponse ? 'profile__save_active' : 'profile__save_disable'}`} type="submit">Сохранить</button>}
+        {inputWasChanged && <button className={`profile__save ${inputWasChanged && isValid && !isWaitingResponse ? 'profile__save_active' : 'profile__save_disable'}`} type="submit" disabled={isWaitingResponse}>Сохранить</button>}
       </form>
       {!inputWasChanged && <button className="profile__sign-out-btn" onClick={handleLogout} type="button">Выйти из аккаунта</button>}
     </section>

@@ -22,10 +22,12 @@ function Register({onSubmit}) {
 
   function handleApiSuccess() {
     resetForm();
+    setIsWaitingResponse(false);
   }
 
   function handleApiError(err) {
     setErrText(err);
+    setIsWaitingResponse(false);
   }
 
   function handleSubmit(e) {
@@ -33,7 +35,6 @@ function Register({onSubmit}) {
 
     setIsWaitingResponse(true);
     onSubmit(values, handleApiSuccess, handleApiError);
-    setIsWaitingResponse(false);
   }
 
   return (

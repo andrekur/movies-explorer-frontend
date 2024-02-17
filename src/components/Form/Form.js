@@ -10,7 +10,7 @@ function Form({title, onSubmit, children, submitButtonText, additionalText, addi
       <h1 className="form__title">{title}</h1>
       <form className="form__content" onSubmit={onSubmit}>
         { children }
-        <button className={`form__save ${!isValid || isWaitingResponse ? 'form__save_disable' : ''}`} type="submit">{submitButtonText}</button>
+        <button className={`form__save ${!isValid || isWaitingResponse ? 'form__save_disable' : ''}`} type="submit" disabled={isWaitingResponse}>{submitButtonText}</button>
       </form>
       <div className="form__additional">
         <span className="form__additional-text">{ additionalText }</span>
