@@ -8,6 +8,7 @@ import { emailRegExp, userNameRegExp } from "../../constants/constants";
 
 function Register({onSubmit}) {
   const [errText, setErrText] = useState('');
+  const [isWaitingResponse, setIsWaitingResponse] = useState(false);
   const {values, handleChange, errors, isValid, setValues, resetForm} = useFormAndValidation();
 
   function handleInputChanged(e) {
@@ -30,12 +31,14 @@ function Register({onSubmit}) {
   function handleSubmit(e) {
     e.preventDefault();
 
+    setIsWaitingResponse(true);
     onSubmit(values, handleApiSuccess, handleApiError);
+    setIsWaitingResponse(false);
   }
 
   return (
     <section className="register">
-      <Form onSubmit={handleSubmit} title='Добро пожаловать!' submitButtonText='Зарегистрироваться' additionalText='Уже зарегистрированы?' additionalLinkText='Войти' additionlaLink='/signin' isValid={isValid}>
+      <Form onSubmit={handleSubmit} title='Добро пожаловать!' submitButtonText='Зарегистрироваться' additionalText='Уже зарегистрированы?' additionalLinkText='Войти' additionalLink='/signin' isValid={isValid} isWaitingResponse={isWaitingResponse}>
         <span className="form__input-helper">Имя</span>
         <input className="form__input form__input_field_name" id="name" value={values.name || ''} pattern={userNameRegExp} onChange={handleInputChanged} type="text" name="name" placeholder="Имя" minLength='2' required/>
         <span className="form__input-error">{errors.name || ''}</span>

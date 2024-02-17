@@ -7,6 +7,7 @@ import { emailRegExp } from "../../constants/constants";
 
 function Login({onSubmit}) {
   const [errText, setErrText] = useState('');
+  const [isWaitingResponse, setIsWaitingResponse] = useState(false);
   const {values, handleChange, errors, isValid, setValues, resetForm} = useFormAndValidation();
 
   function handleInputChanged(e) {
@@ -29,12 +30,14 @@ function Login({onSubmit}) {
   function handleSubmit(e) {
     e.preventDefault();
 
+    setIsWaitingResponse(true);
     onSubmit(values, handleApiSuccess, handleApiError);
+    setIsWaitingResponse(false);
   }
 
   return (
     <section className="login">
-      <Form onSubmit={handleSubmit} title='Рады видеть!' submitButtonText='Войти' additionalText='Ещё не зарегистрированы?' additionalLinkText='Регистрация' additionlaLink='/signup' isValid={isValid}>
+      <Form onSubmit={handleSubmit} title='Рады видеть!' submitButtonText='Войти' additionalText='Ещё не зарегистрированы?' additionalLinkText='Регистрация' additionalLink='/signup' isValid={isValid} isWaitingResponse={isWaitingResponse}>
         <span className="form__input-helper">E-mail</span>
         <input className="form__input form__input_field_email" id="email" pattern={emailRegExp} value={values.email || ''} onChange={handleInputChanged} type="email" name="email" placeholder="email" required/>
         <span className="form__input-error">{errors.email || ''}</span>

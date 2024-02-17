@@ -111,10 +111,8 @@ function App() {
   }
 
   useEffect(() => {
-    console.log('upd', loggedIn)
     setInProgress(true);
     if (mainApi.isTokenLocal()) {
-      console.log('что ?')
       authorizeUser();
     }
     setInProgress(false);

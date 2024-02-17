@@ -59,9 +59,9 @@ function Movies({onSaveMovieClick, savedMovies}) {
     moviesApi.getAllMovies()
       .then((_movies) => {
         const savedMovieIds = savedMovies.map(obj => obj.movieId);
-        const pareparedMovies = _movies.map(obj => ({...obj, isSaved: savedMovieIds.includes(obj.id), thumbnail: (moviesApiOptions.url + obj.image.formats.thumbnail.url)}));
-        const filteredMovies = filterMovies(pareparedMovies, getStorageFilterData())
-        localStorage.setItem('movies', JSON.stringify(pareparedMovies));
+        const preparedMovies = _movies.map(obj => ({...obj, isSaved: savedMovieIds.includes(obj.id), thumbnail: (moviesApiOptions.url + obj.image.formats.thumbnail.url)}));
+        const filteredMovies = filterMovies(preparedMovies, getStorageFilterData())
+        localStorage.setItem('movies', JSON.stringify(preparedMovies));
         setMovies(filteredMovies);
       })
     setSearchWasUsed(true);
@@ -70,7 +70,7 @@ function Movies({onSaveMovieClick, savedMovies}) {
 
   return (
     <section className="movies">
-      <SearchForm byAllFilms={true} onSearchClick={onSearchClick}/>
+      <SearchForm byAllFilms={true} onSearchClick={onSearchClick} inProgress={inProgress}/>
       {searchWasUsed && <MoviesCardList page='all-movies' cards={movies.slice(0, nowOnPage)} onSaveMovieClick={onSaveMovieClick} inProgress={inProgress}/>}
       {!(movies && (movies.length === nowOnPage || movies.length <= nowOnPage)) &&
         <button className="movies__pagination" type="button" onClick={handleExtendCards}>Еще</button>

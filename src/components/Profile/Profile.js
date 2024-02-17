@@ -8,6 +8,7 @@ import { emailRegExp, userNameRegExp } from "../../constants/constants";
 function Profile({onSubmit, logout}) {
   const {values, handleChange, errors, isValid, setValues} = useFormAndValidation();
   const [errText, setErrText] = useState('');
+  const [isWaitingResponse, setIsWaitingResponse] = useState(false);
   const [inputWasChanged, setInputWasChanged] = useState(false);
   const currentUser = useContext(CurrentUserContext);
 
@@ -39,9 +40,11 @@ function Profile({onSubmit, logout}) {
   }, [setValues, currentUser]);
 
   function handleSubmit(e) {
+    setIsWaitingResponse(true);
     e.preventDefault();
 
     onSubmit(values, handleApiSuccess, handleApiError);
+    setIsWaitingResponse(false);
   }
 
   function handleLogout(e) {
@@ -69,7 +72,7 @@ function Profile({onSubmit, logout}) {
           {errText &&<span className="profile__err-text">{errText}</span>}
         </div>
         {!inputWasChanged && <span className="profile__save">Редактировать</span>}
-        {inputWasChanged && <button className={`profile__save ${!isValid || !inputWasChanged ? 'profile__save_disable' : 'profile__save_active'} `} type="submit">Сохранить</button>}
+        {inputWasChanged && <button className={`profile__save ${inputWasChanged && isValid && !isWaitingResponse ? 'profile__save_active' : 'profile__save_disable'}`} type="submit">Сохранить</button>}
       </form>
       {!inputWasChanged && <button className="profile__sign-out-btn" onClick={handleLogout} type="button">Выйти из аккаунта</button>}
     </section>

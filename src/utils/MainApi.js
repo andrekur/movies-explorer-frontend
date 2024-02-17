@@ -40,6 +40,14 @@ class MainApi{
     })
   };
 
+  editUserProfile(data) {
+    return this._sendRequest(`${this._url}/users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify(data)
+    })
+  }
+
   deleteMovie(movieId) {
     return this._sendRequest(`${this._url}/movies/${movieId}`, {
       method: "DELETE",
