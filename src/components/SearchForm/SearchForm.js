@@ -5,7 +5,7 @@ import searchLogo from "../../images/search/icon.svg"
 
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
-function SearchForm({byAllFilms, onSearchClick, inProgress}) {
+function SearchForm({byAllFilms, onSearchClick, inProgress, isWaitingFiltering}) {
   const [isShort, setIsShort] = useState(true);
   const {values, handleChange, isValid, setIsValid, setValues} = useFormAndValidation();
 
@@ -60,11 +60,11 @@ function SearchForm({byAllFilms, onSearchClick, inProgress}) {
             placeholder={isValid ? `Фильмы` : 'Нужно ввести ключевое слово'}
             required
           />
-          <button className={`search__btn-search ${!isValid || inProgress ? 'search__btn-search_disable' : ''}`} type="submit" onClick={handleSearchClick} disabled={!isValid}/>
+          <button className={`search__btn-search ${!isValid || inProgress || isWaitingFiltering ? 'search__btn-search_disable' : ''}`} type="submit" onClick={handleSearchClick} disabled={!isValid}/>
         </div>
         <div className="search__extended-block">
           <button
-            className={`search__btn-filter-short ${isShort ? 'search__btn-filter-short_active' : ''} ${!isValid || inProgress ? 'search__btn-filter-short_disable' : ''}`}
+            className={`search__btn-filter-short ${isShort ? 'search__btn-filter-short_active' : ''} ${!isValid || inProgress || isWaitingFiltering ? 'search__btn-filter-short_disable' : ''}`}
             type="submit"
             onClick={handleIsShortClick}
             disabled={!isValid}
