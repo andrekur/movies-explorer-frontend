@@ -1,36 +1,58 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import { Link } from "react-router-dom";
 
-function MoviesCard({card, page}) {
+function MoviesCard({card, page, onSaveMovieClick, onDeleteMovieClick}) {
+  const [time, setTime] = useState('');
+
+  useEffect(() => {
+    setTime(getTime(card.duration))
+  }, [])
+
+  function getTime(duration) {
+    const hours = Math.floor(duration / 60);
+    const minute = duration % 60;
+    if (hours && minute) {
+      return `${hours}ч${minute}м`
+    }
+    if (hours) {
+      return `${hours}ч`
+    }
+    else {
+      return `${minute}м`
+    }
+  }
 
   function handleSaveMovie(e) {
     e.preventDefault()
 
-    // call API
+    onSaveMovieClick(card)
   }
 
   function deleteMovie(e) {
     e.preventDefault()
 
-    // call API
+    onDeleteMovieClick(card)
   }
 
   // page: all-movies/saved-movies
   return (
-    <li className="moviescard">
-      <img className="moviescard__image" alt={`фотография ${card.name}`} src={card.link}/>
-      <div className="moviescard__content">
-        <div className="moviescard__hight-block">
-          <h2 className="moviescard__title">{card.name}</h2>
+    <li className="movie-card">
+      <a href={`${card.trailerLink}`} rel="noreferrer" target="_blank">
+        <img className="movie-card__image" alt={`фотография ${card.nameRU}`} src={card.thumbnail}/>
+      </a>
+      <div className="movie-card__content">
+        <div className="movie-card__hight-block">
+          <h2 className="movie-card__title">{card.nameRU}</h2>
           { page === 'all-movies' ?
             <button className={
-              `moviescard__save-btn ${ card.isSaved ? 'moviescard__save-btn_active' : '' }`
+              `movie-card__save-btn ${ card.isSaved ? 'movie-card__save-btn_active' : '' }`
             } type="button" onClick={handleSaveMovie}/> : ''
           }
           { page === 'saved-movies' ?
-            <button className="moviescard__delete-btn" onClick={deleteMovie} type="button"/> : ''
+            <button className="movie-card__delete-btn" onClick={deleteMovie} type="button"/> : ''
           }
         </div>
-        <p className="moviescard__time">1ч42м</p>
+        <p className="movie-card__time">{time}</p>
       </div>
     </li>
   )

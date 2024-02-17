@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useLocation} from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useMenuClose } from '../../hooks/menuOverlayClick';
-import { isHeadActivePath} from '../../consts/consts'
+import { isHeadActivePaths } from '../../constants/constants'
 import Logo from '../Logo/Logo'
+
 
 function Header({loggedIn}) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   useMenuClose(mobileMenuOpen, handleOpenMobileMenu);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const isMainPage = pathname === '/';
-  const isHeaderActive = isHeadActivePath.includes(pathname)
+  const isHeaderActive = isHeadActivePaths.includes(pathname)
 
   useEffect(() => {
     document.body.style.position = `${mobileMenuOpen ? 'fixed' : ''}`;
@@ -21,6 +24,18 @@ function Header({loggedIn}) {
     e.preventDefault();
 
     setMobileMenuOpen(!mobileMenuOpen);
+  }
+
+  function handleRegisterClick(e) {
+    e.preventDefault();
+
+    navigate('/signin');
+  }
+
+  function handleLoginClick(e) {
+    e.preventDefault();
+
+    navigate('/signup');
   }
 
   if (isHeaderActive) {
@@ -40,8 +55,8 @@ function Header({loggedIn}) {
             }
             { !loggedIn &&
               <div className="header__auth-block">
-                <button className="header__signup-btn" type="button">Регистрация</button>
-                <button className="header__sign-btn" type="button">Войти</button>
+                <button className="header__signup-btn" type="button" onClick={handleLoginClick}>Регистрация</button>
+                <button className="header__sign-btn" type="button" onClick={handleRegisterClick}>Войти</button>
               </div>
             }
           </div>

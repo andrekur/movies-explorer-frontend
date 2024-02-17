@@ -57,6 +57,11 @@
   background-position: center;
 }
 
+.search__btn-search_disable {
+  cursor: auto;
+  opacity: .6;
+}
+
 .search__btn-search:hover {
   opacity: .8;
 }
@@ -85,9 +90,18 @@
   border: 0;
   padding: 0;
   border-radius: 20px;
-  background-image: url("../../images/search/short-movies-btn_active.svg");
+  background-image: url("../../images/search/short-movies-btn_unactive.svg");
   background-position: center;
   cursor: pointer;
+}
+
+.search__btn-filter-short_active {
+  background-image: url("../../images/search/short-movies-btn_active.svg");
+}
+
+.search__btn-filter-short_disable {
+  cursor: auto;
+  opacity: .6;
 }
 
 .search__btn-filter-short:hover {

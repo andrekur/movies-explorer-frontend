@@ -1,13 +1,13 @@
 import React from "react";
 import { useLocation } from 'react-router-dom';
 
-import { isFooterActivePath} from '../../consts/consts'
+import { isFooterActivePaths } from '../../constants/constants'
 
 function Footer() {
 
   const { pathname } = useLocation();
 
-  const isActive = isFooterActivePath.includes(pathname)
+  const isActive = isFooterActivePaths.includes(pathname)
 
   if (isActive) {
     return (

@@ -1,7 +1,8 @@
 # Дипломный проект курса Веб-разработчик Яндекс Практикума
 
-Макет: [light-3](https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/Дипломный-проект?type=design&node-id=1-1534&mode=design&t=sx61erBf2tojbIBD-0)
-
+- Макет: [light-3](https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/Дипломный-проект?type=design&node-id=1-1534&mode=design&t=sx61erBf2tojbIBD-0)
+- Сайт: [ссылка](https://andrekur.movies.nomoredomainswork.ru/)
+- Pull request: [ссылка](https://github.com/andrekur/movies-explorer-frontend/pull/2)
 
 В проекте реализованы:
 1. Страница проекта - /
